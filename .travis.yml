@@ -15,6 +15,28 @@ matrix:
       dist: xenial
       sudo: true
 
+env:
+  global:
+    # List package dependencies for conda (Package, dependency and environment management for any language—Python: https://docs.conda.io/en/latest/)
+    # https://stackoverflow.com/questions/20994716/what-is-the-difference-between-pip-and-conda
+    - CONDA_DEPS="pytest numpy"
+    # package name for test invocation
+    - PACKAGENAME="activityfeed-tests"
+
+before_install:
+  # Here we download miniconda and install the dependencies
+  - export MINICONDA=$HOME/miniconda
+  - export PATH="$MINICONDA/bin:$PATH"
+  - hash -r
+  - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+  - bash miniconda.sh -b -f -p $MINICONDA
+  - conda config --set always_yes yes
+  - conda update conda
+  - conda info -a
+  - conda create -n testenv python=$TRAVIS_PYTHON_VERSION
+  - source activate testenv
+  - conda install $CONDA_DEPS
+
 # command to install dependencies
 install:
   - pip install .[test]
@@ -24,4 +46,5 @@ install:
 
 # command to run tests
 script:
-  - python setup.py ci
+  #- python setup.py ci
+  - pytest $PACKAGENAME
