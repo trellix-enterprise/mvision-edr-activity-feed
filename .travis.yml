@@ -1,0 +1,27 @@
+sudo: false
+
+language: python
+
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+# Use Python 3.7 on xenial with sudo since it's not available on trusty yet
+matrix:
+  include:
+    - python: 3.7
+      dist: xenial
+      sudo: true
+
+# command to install dependencies
+install:
+  - pip install .[test]
+  # Install through setup.py should be redundant because of the preceding pip
+  # install. Just doing this to try to catch any high-level errors.
+  - python setup.py install
+
+# command to run tests
+script:
+  - python setup.py ci
