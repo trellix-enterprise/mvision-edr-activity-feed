@@ -21,7 +21,7 @@ env:
     # https://stackoverflow.com/questions/20994716/what-is-the-difference-between-pip-and-conda
     - CONDA_DEPS="pytest numpy"
     # package name for test invocation
-    - PACKAGENAME="activityfeed-tests"
+    - PACKAGENAME="activityfeed"
 
 before_install:
   # Here we download miniconda and install the dependencies
