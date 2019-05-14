@@ -19,7 +19,7 @@ env:
   global:
     # List package dependencies for conda (Package, dependency and environment management for any language—Python: https://docs.conda.io/en/latest/)
     # https://stackoverflow.com/questions/20994716/what-is-the-difference-between-pip-and-conda
-    - CONDA_DEPS="pytest numpy"
+    - CONDA_DEPS="pytest coveralls pytest-cov numpy"
     # package name for test invocation
     - PACKAGENAME="activityfeed"
 
@@ -47,4 +47,8 @@ install:
 # command to run tests
 script:
   #- python setup.py ci
-  - pytest $PACKAGENAME
+  - pytest --cov=$PACKAGENAME
+  
+# run coverage
+after_success:
+  - coveralls
