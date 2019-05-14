@@ -4,7 +4,7 @@ language: python
 
 python:
   - "2.7"
-  - "3.4"
+  #- "3.4"
   - "3.5"
   - "3.6"
 
@@ -47,7 +47,7 @@ install:
 # command to run tests
 script:
   #- python setup.py ci
-  - pytest --cov=$PACKAGENAME
+  - pytest --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
   
 # run coverage
 after_success:
