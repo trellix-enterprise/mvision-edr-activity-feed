@@ -57,4 +57,4 @@ install:
 # command to run tests
 script:
   #- python setup.py ci
-  - pytest $PACKAGENAME
+  - python -m test
