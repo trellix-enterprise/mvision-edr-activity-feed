@@ -17,15 +17,11 @@ matrix:
 
 # command to install dependencies
 install:
-#  - pip install .[test]
-  # Install through setup.py should be redundant because of the preceding pip
-  # install. Just doing this to try to catch any high-level errors.
-#  - python setup.py install
   - pip install pipenv
-  - pipenv install --skip-lock
+  - pipenv install --skip-lock # TODO: improve pipenv running
   #- pipenv shell
 
 # command to run tests
 script:
   #- python setup.py ci
-  - python -m tests
+  - python -m unittest -v tests.test_activityfeed
