@@ -15,6 +15,7 @@ matrix:
       dist: xenial
       sudo: true
 
+
 # command to install dependencies
 install:
   - pip install pipenv
@@ -23,4 +24,10 @@ install:
 
 # command to run tests
 script:
-  - python -m unittest discover -s tests
+  - python -m unittest discover -s tests --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
+  #- python setup.py ci
+  #- pytest --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
+  
+# run coverage
+after_success:
+  - coveralls
