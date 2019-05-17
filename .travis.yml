@@ -15,17 +15,6 @@ matrix:
       dist: xenial
       sudo: true
 
-env:
-  global:
-    # List package dependencies for conda (Package, dependency and environment management for any language—Python: https://docs.conda.io/en/latest/)
-    # https://stackoverflow.com/questions/20994716/what-is-the-difference-between-pip-and-conda
-    - CONDA_DEPS="pytest numpy"
-    # package name for test invocation
-    - PACKAGENAME="mvsionedractivityfeed"
-
-#  - pipenv install
-#  - pipenv shell
-
 # command to install dependencies
 install:
 #  - pip install .[test]
@@ -34,8 +23,7 @@ install:
 #  - python setup.py install
   - pip install pipenv
   - pipenv install --skip-lock
-  - pipenv shell
-
+  #- pipenv shell
 
 # command to run tests
 script:
