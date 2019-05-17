@@ -212,3 +212,6 @@ class Test(unittest.TestCase):
     #         r.side_effect = RequestException("Error")
     #         with self.assertRaises(TemporaryAuthenticationError):
     #             login("/", "username", "password")
+
+if __name__ == '__main__':
+    unittest.main()

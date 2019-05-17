@@ -23,5 +23,4 @@ install:
 
 # command to run tests
 script:
-  #- python setup.py ci
-  - python -m unittest -v tests.test_activityfeed
+  - python -m unittest discover -s tests
