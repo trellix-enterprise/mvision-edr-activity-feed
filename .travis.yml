@@ -33,7 +33,7 @@ install:
   # install. Just doing this to try to catch any high-level errors.
 #  - python setup.py install
   - pip install pipenv
-  - pipenv install
+  - pipenv install --skip-lock
   - pipenv shell
 
 
