@@ -17,7 +17,7 @@ matrix:
 
 env:
   global:
-  - PACKAGENAME="mvision-edr-activity-feed"
+  - PACKAGENAME="mvision_edr_activity_feed"
 
 # command to install dependencies
 install:
