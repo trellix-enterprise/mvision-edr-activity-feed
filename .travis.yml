@@ -20,13 +20,10 @@ matrix:
 install:
   - pip install pipenv
   - pipenv install --skip-lock # TODO: improve pipenv running
-  #- pipenv shell
 
 # command to run tests
 script:
-  - python -m unittest discover -s tests --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
-  #- python setup.py ci
-  #- pytest --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
+  - pytest --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
   
 # run coverage
 after_success:

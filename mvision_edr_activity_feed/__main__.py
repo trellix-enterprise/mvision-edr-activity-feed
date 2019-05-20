@@ -4,7 +4,7 @@ import logging
 import json
 import os
 from dxlstreamingclient.channel import Channel, ChannelAuth
-from mvisionedractivityfeed import __version__ as version
+from mvision_edr_activity_feed import __version__ as version
 
 
 INTERRUPTED = False

@@ -1,7 +1,7 @@
 """Example of subscription to all case-related events
 """
 import logging
-from mvisionedractivityfeed import subscribe
+from mvision_edr_activity_feed import subscribe
 
 
 @subscribe(entity='case')

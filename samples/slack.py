@@ -2,7 +2,7 @@
 """
 import logging
 from samples.slack import SlackEvents
-from mvisionedractivityfeed import subscribe
+from mvision_edr_activity_feed import subscribe
 
 
 slack_events = None

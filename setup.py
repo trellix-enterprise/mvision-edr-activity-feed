@@ -4,7 +4,7 @@ PACKAGES = find_packages()
 
 VERSION_INFO = {}
 CWD = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(CWD, "mvisonedractivityfeed", "_version.py")) as f:
+with open(os.path.join(CWD, "mvison_edr_activity_feed", "_version.py")) as f:
     exec(f.read(), VERSION_INFO)
 
 reqs = [
@@ -27,7 +27,7 @@ opts = dict(
             long_description="Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python). It includes Client samples that shares thread-data between MVISION EDR and SIEM OnPrem.",
             url="https://github.com/mcafee/mvision-edr-activity-feed",
             download_url="https://github.com/mcafee/mvision-edr-activity-feed",
-            license="MIT",
+            license="Apache License 2.0",
             packages=PACKAGES)
 
 

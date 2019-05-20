@@ -1,7 +1,7 @@
 """Example of subscription to case-related events, and
 integration with The Hive
 """
-from mvisionedractivityfeed import subscribe
+from mvision_edr_activity_feed import subscribe
 
 from samples.thehive.api import TheHiveApiClient
 from samples.thehive.tenant import Tenant
