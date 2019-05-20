@@ -8,7 +8,7 @@ with open(os.path.join(CWD, "mvison_edr_activity_feed", "_version.py")) as f:
     exec(f.read(), VERSION_INFO)
 
 reqs = [
-    'dxlstreamingclient==',
+    'dxlstreamingclient==0.1.1',
     'requests==2.22.0',
     'jmespath==0.9.4',
     'furl==2.0.0'
@@ -30,7 +30,7 @@ opts = dict(
             tests_require = test_reqs + reqs,
             maintainer_email="Camila_Stock@McAfee.com",
             description="Open Source ActivityFeed integrated with OpenDXL streaming clien",
-            long_description="Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python). It includes Client samples that shares thread-data between MVISION EDR and SIEM OnPrem.",
+            long_description="Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python).",
             url="https://github.com/mcafee/mvision-edr-activity-feed",
             download_url="https://github.com/mcafee/mvision-edr-activity-feed",
             license="Apache License 2.0",

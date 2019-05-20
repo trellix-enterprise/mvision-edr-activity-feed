@@ -109,6 +109,7 @@ def main():
                           json.dumps(payloads, indent=4, sort_keys=True))
 
                 channel.run(process_callback, wait_between_queries=period, topics=args.topic)
+                invo
 
         except Exception as e:
             logging.error("Unexpected error: {}".format(e))
