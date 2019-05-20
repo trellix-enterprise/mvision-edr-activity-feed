@@ -17,7 +17,10 @@ reqs = [
 test_reqs = [
     'mock==3.0.5',
     'pytest==4.5.0',
-    'coverage==4.5.3'
+    'coverage==4.5.3',
+    'coveralls==1.7.0',
+    'pytest-cov==2.7.1',
+    'numpy==1.16.3'
 ]
 
 opts = dict(

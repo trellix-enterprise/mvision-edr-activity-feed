@@ -17,7 +17,7 @@ matrix:
 
 env:
   global:
-  - PACKAGENAME="mvision_edr_activity_feed"
+  - PACKAGENAME="mvision-edr-activity-feed"
 
 # command to install dependencies
 install:
@@ -27,8 +27,6 @@ install:
 # command to run tests
 script:
   - pytest --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
-  #- python setup.py ci
-  #- pytest --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
   
 # run coverage
 after_success:
