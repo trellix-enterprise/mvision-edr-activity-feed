@@ -10,11 +10,14 @@ with open(os.path.join(CWD, "mvison_edr_activity_feed", "_version.py")) as f:
 reqs = [
     'dxlstreamingclient==',
     'requests==2.22.0',
-    'jmespath==0.9.4'
+    'jmespath==0.9.4',
+    'furl==2.0.0'
 ]
 
 test_reqs = [
-    'mock==3.0.5'
+    'mock==3.0.5',
+    'pytest==4.5.0',
+    'coverage==4.5.3'
 ]
 
 opts = dict(

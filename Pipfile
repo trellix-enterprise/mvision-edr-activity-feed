@@ -8,7 +8,11 @@ requests = "*"
 furl = "*"
 jmespath = "*"
 dxlstreamingclient = "*"
-mock = "*"
 
 [requires]
 python_version = "3.7"
+
+[dev-packages]
+mock = "*"
+pytest = "*"
+coverage = "*"
