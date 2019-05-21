@@ -1,4 +1,4 @@
-# MVISION EDR - ACTIVITY FEED (https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?style=flat)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
+# MVISION EDR - ACTIVITY FEED [![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?style=flat)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
 
 - Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python).
 - ``mvision-edr-activity-feed`` is a command line tool to consume and subscribe to events from MVISION EDR
