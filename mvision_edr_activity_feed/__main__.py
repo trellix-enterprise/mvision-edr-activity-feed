@@ -4,7 +4,8 @@ import logging
 import json
 import os
 from dxlstreamingclient.channel import Channel, ChannelAuth
-from mvision_edr_activity_feed import __version__ as version
+from mvision_edr_activity_feed import invoke, __version__ as version
+
 
 
 INTERRUPTED = False
@@ -14,14 +15,14 @@ def setup_argument_parser():
     parser = argparse.ArgumentParser(
         prog="mvision-edr-activity-feed",
         add_help=True,
-        description="MVISION EDR Activity Feed",
+        description="MVISION EDR Event Dispatcher CLI",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('--version',
                         action='version',
                         version=version)
     parser.add_argument('--url', required=True,
-                        help="Base URL for McAfee Investigator")
+                        help="Base URL for MVISION EDR")
     parser.add_argument('--username', required=True,
                         help="Username for the service")
     parser.add_argument('--password', required=True,
@@ -107,6 +108,8 @@ def main():
                 def process_callback(payloads):
                     print("Received payloads: \n%s",
                           json.dumps(payloads, indent=4, sort_keys=True))
+
+                invoke(process_callback, configs)
 
                 channel.run(process_callback, wait_between_queries=period, topics=args.topic)
 
