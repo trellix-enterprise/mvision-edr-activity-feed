@@ -67,7 +67,7 @@ def invoke(payloads, configs, reraise=False):
 
         for callback in callbacks:
             try:
-                if len(inspect.getargspec(callback).args) == 2:
+                if len(inspect.getfullargspec(callback).args) == 2:
                     callback(payload, configs)
                 else:
                     # calling subscription without configuration

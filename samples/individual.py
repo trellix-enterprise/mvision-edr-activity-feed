@@ -1,7 +1,7 @@
 """Example of subscription to individual case-related events
 """
 import logging
-from mcafee_investigator_events import subscribe
+from mvision_edr_activity_feed import subscribe
 
 
 @subscribe(entity='case', subtype='creation')

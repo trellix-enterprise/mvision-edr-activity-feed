@@ -1,4 +1,5 @@
-"""Example of subscription to individual case-related events
+"""
+Example of subscription to individual case-related events
 """
 import logging
 from samples.slack import SlackEvents

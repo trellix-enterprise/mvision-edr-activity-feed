@@ -8,9 +8,6 @@ from mvision_edr_activity_feed import invoke, __version__ as version
 
 
 
-INTERRUPTED = False
-
-
 def setup_argument_parser():
     parser = argparse.ArgumentParser(
         prog="mvision-edr-activity-feed",
@@ -85,6 +82,7 @@ def main():
     # load modules containing subscriptions
     for module in args.module:
         try:
+
             __import__(module)
         except Exception as exp:
             logging.critical("While attempting to load module '%s': %s",
@@ -95,27 +93,27 @@ def main():
 
     logging.info("Sarting event loop...")
 
-    while not INTERRUPTED:
-        try:
-            with Channel(args.url,
-                         auth=ChannelAuth(args.url,
-                                          args.username,
-                                          args.password,
-                                          verify_cert_bundle=args.cert_bundle),
-                         consumer_group=args.consumer_group,
-                         verify_cert_bundle=args.cert_bundle) as channel:
+    try:
+        with Channel(args.url,
+                     auth=ChannelAuth(args.url,
+                                      args.username,
+                                      args.password,
+                                      verify_cert_bundle=args.cert_bundle),
+                     consumer_group=args.consumer_group,
+                     verify_cert_bundle=args.cert_bundle) as channel:
 
-                def process_callback(payloads):
-                    print("Received payloads: \n%s",
-                          json.dumps(payloads, indent=4, sort_keys=True))
+            def process_callback(payloads):
+                print("Received payloads: \n%s",
+                      json.dumps(payloads, indent=4, sort_keys=True))
+                invoke(payloads, configs)
+                return True
 
-                invoke(process_callback, configs)
+            # Consume records indefinitely
+            channel.run(process_callback, wait_between_queries=period, topics=args.topic)
 
-                channel.run(process_callback, wait_between_queries=period, topics=args.topic)
 
-
-        except Exception as e:
-            logging.error("Unexpected error: {}".format(e))
+    except Exception as e:
+        logging.error("Unexpected error: {}".format(e))
 
 if __name__ == "__main__":
     sys.exit(main())
