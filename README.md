@@ -1,4 +1,6 @@
-# MVISION EDR - ACTIVITY FEED
+# MVISION EDR - ACTIVITY FEED [![Latest PyPI Version](https://img.shields.io/pypi/v/dxlstreamingclient.svg)](https://pypi.python.org/pypi/dxlstreamingclient)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?branch=master)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
 
 - Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python).
 - It includes Client samples that shares thread-data between MVISION EDR and SIEM OnPrem.
