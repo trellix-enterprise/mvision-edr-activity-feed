@@ -6,17 +6,14 @@
 - ``mvision-edr-activity-feed`` is a command line tool to consume and subscribe to events from MVISION EDR
 
 
-## INSTALLATION
----------------
-
+## INSTALL
 Run either:
-
 .. code:: shell
 
     python setup.py install
-    
-Command line usage
-------------------
+   
+   
+## COMMAND LINE USAGE
 
 In order to use the CLI, you need credentials in McAfee Investigator.
 The CLI has several parameters (as described with
@@ -55,8 +52,8 @@ The CLI has several parameters (as described with
       --config CONFIG       Configuration key/value pairs for callbacks (default:
                             None)
 
-Subscriptions
--------------
+
+## SUBSCRIPTIONS
 
 You need to provide at least one module with your subscriptions for the
 CLI to load. The following is an sample subscription:
@@ -101,8 +98,7 @@ Note that there are two ways to subscribe to events:
 * **Advanced**: This is for generic events, and uses a `JMESPath <http://jmespath.org/>`_ expression to determine the subscription
 
 
-Running the examples
---------------------
+##RUNNING THE EXAMPLES
 
 There are a couple of simple examples that will log event information to
 the console. These are executed as follows:
