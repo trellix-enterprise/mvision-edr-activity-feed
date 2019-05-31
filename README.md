@@ -98,7 +98,7 @@ Note that there are two ways to subscribe to events:
 * **Advanced**: This is for generic events, and uses a `JMESPath <http://jmespath.org/>`_ expression to determine the subscription
 
 
-##RUNNING THE EXAMPLES
+## RUNNING THE EXAMPLES
 
 There are a couple of simple examples that will log event information to
 the console. These are executed as follows:
