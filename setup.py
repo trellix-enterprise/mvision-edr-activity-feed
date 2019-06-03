@@ -32,7 +32,7 @@ test_reqs = [
 ]
 
 opts = dict(
-            name="mvisionedractivityfeed",
+            name="mvision_edr_activity_feed",
             version=get_version(),
             maintainer="Camila Stock & Pablo Aguerre",
             maintainer_email="Camila_Stock@McAfee.com",
@@ -48,7 +48,7 @@ opts = dict(
             include_package_data=True,
             entry_points={
                 'console_scripts': [
-                    'mvision-edr-activity-feed = ../mvision_edr_activity_feed.__main__:main'
+                    'mvision_edr_activity_feed = mvision_edr_activity_feed.__main__:main'
                 ]
             })
 
