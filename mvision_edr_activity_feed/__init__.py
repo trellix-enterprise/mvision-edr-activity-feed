@@ -55,9 +55,11 @@ def reset_subscriptions():
     del subscriptions[:]
 
 def getfullargs_internal(callback):
-    if (sys.version_info > (2, 7)):
+    logging.info("Major version info: %s", sys.version_info[0])
+    if (sys.version_info[0] >= 3):
         return inspect.getfullargspec(callback).args
     else:
+        logging.info("Lowest python version in use")
         return inspect.getargspec(callback).args
 
 def invoke(payloads, configs, reraise=False):
