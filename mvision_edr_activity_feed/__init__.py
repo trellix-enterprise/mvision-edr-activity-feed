@@ -1,6 +1,7 @@
 import logging
 import inspect
 import jmespath
+import sys
 
 __version__ = "0.0.5"
 
@@ -53,6 +54,11 @@ def subscribe(*args, **kwargs):
 def reset_subscriptions():
     del subscriptions[:]
 
+def getfullargs_internal(callback):
+    if (sys.version_info > (2, 7)):
+        return inspect.getfullargspec(callback).args
+    else:
+        return inspect.getargspec(callback).args
 
 def invoke(payloads, configs, reraise=False):
     total_success = 0
@@ -67,7 +73,7 @@ def invoke(payloads, configs, reraise=False):
 
         for callback in callbacks:
             try:
-                if len(inspect.getfullargspec(callback).args) == 2:
+                if len(getfullargs_internal(callback)) == 2:
                     callback(payload, configs)
                 else:
                     # calling subscription without configuration
