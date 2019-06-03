@@ -1,19 +1,19 @@
-# MVISION EDR - ACTIVITY FEED [![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?style=flat)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
+# MVISION EDR - ACTIVITY FEED [![Latest PyPI Version](https://img.shields.io/pypi/v/dxlstreamingclient.svg)](https://pypi.python.org/pypi/dxlstreamingclient) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?branch=master)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
 
+
+## OVERVIEW
 - Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python).
 - ``mvision-edr-activity-feed`` is a command line tool to consume and subscribe to events from MVISION EDR
 
-Installation
-------------
 
+## INSTALL
 Run either:
-
 .. code:: shell
 
     python setup.py install
-    
-Command line usage
-------------------
+   
+   
+## COMMAND LINE USAGE
 
 In order to use the CLI, you need credentials in McAfee Investigator.
 The CLI has several parameters (as described with
@@ -52,8 +52,8 @@ The CLI has several parameters (as described with
       --config CONFIG       Configuration key/value pairs for callbacks (default:
                             None)
 
-Subscriptions
--------------
+
+## SUBSCRIPTIONS
 
 You need to provide at least one module with your subscriptions for the
 CLI to load. The following is an sample subscription:
@@ -98,8 +98,7 @@ Note that there are two ways to subscribe to events:
 * **Advanced**: This is for generic events, and uses a `JMESPath <http://jmespath.org/>`_ expression to determine the subscription
 
 
-Running the examples
---------------------
+## RUNNING THE EXAMPLES
 
 There are a couple of simple examples that will log event information to
 the console. These are executed as follows:
@@ -117,8 +116,29 @@ You can also mix several modules in a single call:
 .. code:: shell
 
     mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --username YOUR_USERNAME --password YOUR_PASSWORD --module samples.generic --module samples.individual --loglevel=debug
-    
 
 
-# TRAVIS CI STATUS [![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?style=flat)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
+## BUGS AND FEEDBACK
+
+For bugs, questions and discussions please use the
+[GitHub Issues](https://github.com/mcafee/mvision-edr-activity-feed/issues).
+
+
+## LICENSE
+
+Copyright 2018, McAfee LLC
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
+
+
+## TRAVIS CI STATUS [![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?branch=master)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
 - For further details about Travis CI see https://travis-ci.org/getting_started. Additionally, for improving template with more advanced info (including coverage, automatic deployment, etc.) check out http://github.com/uwescience/shablona. 
