@@ -48,7 +48,7 @@ opts = dict(
             include_package_data=True,
             entry_points={
                 'console_scripts': [
-                    'mvision-edr-activity-feed = mvision_edr_activity_feed.__main__:main'
+                    'mvision-edr-activity-feed = ../mvision_edr_activity_feed.__main__:main'
                 ]
             })
 
