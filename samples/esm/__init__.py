@@ -12,7 +12,9 @@ class EsmEvents(object):
     def case_created(self, event):
         logging.info("Sending case...")
         body = json.dumps(event)
-        requests.post(self.url, data=body)
+        logging.info(json.dumps(event))
+        #sys-log integration only
+        #requests.post(self.url, data=body)
 
     def threat_created(self, event):
         logging.info("Sending threat...")
