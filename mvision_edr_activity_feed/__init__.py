@@ -2,6 +2,7 @@ import logging
 import inspect
 import jmespath
 import sys
+import json
 
 __version__ = "0.0.5"
 
@@ -66,7 +67,11 @@ def invoke(payloads, configs, reraise=False):
     total_success = 0
     total_error = 0
     for payload in payloads:
-        logging.debug("Dispatching: %s", payload)
+        logging.debug('About to dispatch payload ...')
+        try:
+            logging.debug(json.dumps(payload))
+        except Exception:
+            logging.exception('Error while dumping payload to dispatch')
 
         callbacks = set()
         for expression, func in subscriptions:
@@ -76,9 +81,10 @@ def invoke(payloads, configs, reraise=False):
         for callback in callbacks:
             try:
                 if len(getfullargs_internal(callback)) == 2:
+                    logging.debug('Calling subscription with configuration ...')
                     callback(payload, configs)
                 else:
-                    # calling subscription without configuration
+                    logging.debug('Calling subscription without configuration ...')
                     callback(payload)
                 total_success += 1
             except Exception as exp:
