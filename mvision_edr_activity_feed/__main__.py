@@ -1,5 +1,6 @@
 import sys
 import argparse
+from logging.handlers import SysLogHandler
 import logging
 import json
 import os
@@ -79,10 +80,12 @@ def main():
                         stream=args.logfile)
     
     # add SysLog support:
-    logger = logging.getLogger(__name__) 
-    handler = logging.handlers.SysLogHandler(address='/dev/log')
+    logger = logging.getLogger()
+    handler = SysLogHandler(address='/dev/log')
     handler.setLevel(loglevel.upper())
     logger.addHandler(handler)
+    # default log location (TODO: This can be removed in the near future, will ask MDC):
+    logger.addHandler(logging.FileHandler("/var/log/mvedr_activity_feed.log"))
     
     sys.path.append(os.getcwd())
     # load modules containing subscriptions
