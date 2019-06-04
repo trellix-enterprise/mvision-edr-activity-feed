@@ -79,6 +79,7 @@ def main():
                         stream=args.logfile)
     
     # add SysLog support:
+    logger = logging.getLogger(__name__) 
     handler = logging.handlers.SysLogHandler(address='/dev/log')
     handler.setLevel(loglevel.upper())
     logger.addHandler(handler)
