@@ -98,6 +98,11 @@ Note that there are two ways to subscribe to events:
 * **Advanced**: This is for generic events, and uses a `JMESPath <http://jmespath.org/>`_ expression to determine the subscription
 
 
+## CONFIGURE RSYSLOG IN CASE OF REMOTE LOGGING
+
+In case of using rsyslog for remote logging please follow the documentation explained here: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server-in-centos-7/
+
+
 ## RUNNING THE EXAMPLES
 
 There are a couple of simple examples that will log event information to
