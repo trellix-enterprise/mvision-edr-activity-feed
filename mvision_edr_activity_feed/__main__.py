@@ -77,7 +77,12 @@ def main():
 
     logging.basicConfig(level=getattr(logging, loglevel.upper(), None),
                         stream=args.logfile)
-
+    
+    # add SysLog support:
+    handler = logging.handlers.SysLogHandler(address='/dev/log')
+    handler.setLevel(loglevel.upper())
+    logger.addHandler(handler)
+    
     sys.path.append(os.getcwd())
     # load modules containing subscriptions
     for module in args.module:
