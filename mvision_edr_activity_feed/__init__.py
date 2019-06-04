@@ -71,7 +71,7 @@ def invoke(payloads, configs, reraise=False):
         try:
             logging.debug(json.dumps(payload))
         except Exception:
-            logging.exception('Error while dumping payload to dispatch')
+            logging.error('Error while dumping payload to dispatch')
 
         callbacks = set()
         for expression, func in subscriptions:
