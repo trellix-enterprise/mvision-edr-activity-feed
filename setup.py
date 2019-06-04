@@ -33,6 +33,7 @@ test_reqs = [
 
 opts = dict(
             name="mvision_edr_activity_feed",
+            #version='0.0.0',
             version=get_version(),
             maintainer="Camila Stock & Pablo Aguerre",
             maintainer_email="Camila_Stock@McAfee.com",
@@ -40,18 +41,19 @@ opts = dict(
             tests_require = test_reqs + reqs,
             description="Open Source ActivityFeed integrated with OpenDXL streaming clien",
             long_description="Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python).",
-            url="https://github.com/mcafee/mvision-edr-activity-feed",
-            download_url="https://github.com/mcafee/mvision-edr-activity-feed",
+            #url="https://github.com/mcafee/mvision-edr-activity-feed",
+            #download_url="https://github.com/mcafee/mvision-edr-activity-feed",
             license="Apache License 2.0",
-            packages=PACKAGES,
-            package_dir={'': 'mvision_edr_activity_feed'},
-            include_package_data=True,
+            packages=['mvision_edr_activity_feed', 'samples', 'samples.esm', 'samples.slack', 'samples.thehive'],
+            #packages=PACKAGES,
+            #package_dir={'': 'mvision_edr_activity_feed'},
+            #include_package_data=True,
             entry_points={
-                'console_scripts': [
-                    'mvision_edr_activity_feed = mvision_edr_activity_feed.__main__:main'
-                ]
-            })
-
+               'console_scripts': [
+                    'mvision-edr-activity-feed = mvision_edr_activity_feed.__main__:main'
+               ]
+            }
+            )
 
 if __name__ == '__main__':
     try:
