@@ -23,10 +23,10 @@ class EsmEvents(object):
         # Normally commented as it needs to be run as sudo:
         logger.addHandler(logging.FileHandler("/var/log/mvedr_activity_feed.log"))
         
-    def case_created(self, event):
+    def send_case(self, event):
         logging.debug(">>>Sending ESM case...")
         logging.info(json.dumps(event))
         
-    def threat_created(self, event):
+    def send_threat(self, event):
         logging.debug(">>>Sending ESM threat...")
         logging.info(json.dumps(event))
