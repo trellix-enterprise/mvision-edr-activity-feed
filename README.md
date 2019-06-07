@@ -15,7 +15,7 @@ Run either:
    
 ## COMMAND LINE USAGE
 
-In order to use the CLI, you need credentials in McAfee Investigator.
+In order to use the CLI, you need credentials in MVEDR.
 The CLI has several parameters (as described with
 ``mvision-edr-activity-feed  -h``):
 
@@ -98,6 +98,18 @@ Note that there are two ways to subscribe to events:
 * **Advanced**: This is for generic events, and uses a `JMESPath <http://jmespath.org/>`_ expression to determine the subscription
 
 
+## CONFIGURE RSYSLOG IN CASE OF REMOTE LOGGING
+
+In case of using rsyslog for remote logging please follow the documentation explained here: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server-in-centos-7/
+
+rsyslog.conf that can be used as an example: https://github.com/mcafee/mvision-edr-activity-feed/blob/feature/activity_feed_integration/rsyslog.conf
+
+
+## PARSING RULE IN CASE OF SIEM
+
+In case of a SIEM of type ESM, it's recommended to import the following parsing rule to ASP General Parser in order to see the event categorized as MVDER Suspicious Activity (Displayed in Events View with proper details instead of Unknown event): https://github.com/mcafee/mvision-edr-activity-feed/blob/feature/activity_feed_integration/RULE_MVISION_EDR_THREAT.xml    
+
+
 ## RUNNING THE EXAMPLES
 
 There are a couple of simple examples that will log event information to
@@ -126,7 +138,7 @@ For bugs, questions and discussions please use the
 
 ## LICENSE
 
-Copyright 2018, McAfee LLC
+Copyright 2019, McAfee LLC
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
