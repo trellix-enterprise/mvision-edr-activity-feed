@@ -79,13 +79,17 @@ def main():
     logging.basicConfig(level=getattr(logging, loglevel.upper(), None),
                         stream=args.logfile)
     
-    # add SysLog support:
+    """
+    # Add SysLog support at global level 
+    # (TODO: Ask MDC as this "global" solution seems to be simpler than a custom level
+    # sample which requires more code -As today):
     logger = logging.getLogger()
     handler = SysLogHandler(address='/dev/log')
     handler.setLevel(loglevel.upper())
     logger.addHandler(handler)
-    # default log location (TODO: This can be removed in the near future, will ask MDC):
-    logger.addHandler(logging.FileHandler("/var/log/mvedr_activity_feed.log"))
+    # Default log location in case needed at sudo level for investigating payloads (Normally commented):
+    #logger.addHandler(logging.FileHandler("/var/log/mvedr_activity_feed.log"))
+    """
     
     sys.path.append(os.getcwd())
     # load modules containing subscriptions
