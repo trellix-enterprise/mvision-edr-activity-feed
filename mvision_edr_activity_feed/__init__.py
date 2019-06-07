@@ -20,7 +20,7 @@ options = jmespath.Options(custom_functions=CustomFunctions())
 
 
 def subscribe(*args, **kwargs):
-    # entity=None, subtype=None, expression=None
+    logging.debug("... Subscribe in place ...")
     entity = kwargs.get('entity')
     subtype = kwargs.get('subtype')
     expression = args[0] if len(args) else None
@@ -69,7 +69,10 @@ def invoke(payloads, configs, reraise=False):
     for payload in payloads:
         logging.debug('About to dispatch payload ...')
         try:
-            logging.debug(json.dumps(payload))
+            # Enable the following code in case of global SysLogHandler solution:
+            #logging.info(json.dumps(payload))
+            # Disable the following code in case of global SysLogHandler solution:
+            logging.debug("... Dispatching: %s", payload)
         except Exception:
             logging.error('Error while dumping payload to dispatch')
 
