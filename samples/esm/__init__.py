@@ -23,8 +23,8 @@ class EsmEvents(object):
             logger.addHandler(handler)
             logging.info("SysLogHandler setup successfull!")
             # Default log location in case needed at sudo level for investigating payloads.
-            # Normally commented as it needs to be run as sudo:
-            logger.addHandler(logging.FileHandler("/var/log/mvedr_activity_feed.log"))
+            # Normally commented as it needs to be run as sudo but it can be used for troubleshoot purposes:
+            #logger.addHandler(logging.FileHandler("/var/log/mvedr_activity_feed_esm.log"))
         except Exception as e:
             logging.error("Error while setting up SysLogHandler or FileHandler for ESM")
         
