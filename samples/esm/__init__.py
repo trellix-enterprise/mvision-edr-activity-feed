@@ -5,10 +5,9 @@ import json
 
 class EsmEvents(object):
 
-    def __init__(self, url):
+    def __init__(self):
         logging.info("About to setup SysLogHandler for ESM...")
         try:
-            self.url = url
             # SysLog support at Sample level -Perhaps is better at global level.
             # SysLogHandler configured to local syslog and it requires that the
             # user configures rsyslog.conf to point to remote ESM because:
