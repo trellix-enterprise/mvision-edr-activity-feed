@@ -15,7 +15,7 @@ Run either:
    
 ## COMMAND LINE USAGE
 
-In order to use the CLI, you need credentials in McAfee Investigator.
+In order to use the CLI, you need credentials in MVEDR.
 The CLI has several parameters (as described with
 ``mvision-edr-activity-feed  -h``):
 
@@ -138,7 +138,7 @@ For bugs, questions and discussions please use the
 
 ## LICENSE
 
-Copyright 2018, McAfee LLC
+Copyright 2019, McAfee LLC
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
