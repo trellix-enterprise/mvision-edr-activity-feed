@@ -1,5 +1,5 @@
 [run]
-source = $PACKAGENAME
+source = "mvision_edr_activity_feed"
 omit =
     */python?.?/*
     */lib-python/?.?/*.py

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nitro_policy esm="4993:705B" time="05/16/2019 17:24:54" user="NGCP" build="11.1.2 20181112172525" model="ENMELM-VM4" version="11001002">
+  <rules count="1">
+    <rule>
+      <id>5000001</id>
+      <normid>805306368</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>MVISION EDR Threat detected</message>
+      <description>MVISION EDR threat detected</description>
+      <origin>1</origin>
+      <severity>50</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"MVISION EDR Threat detected";adsid:777;content:"\"origin\": \"FT\"";json;pcre:"\{.*\"origin\":\s*\"FT\".*\}";var@{File_Path}:${threat.interpreterFileAttrs.path};var@{firsttime,lasttime}:${threat.detectionDate};var@{Hash}:${threat.threatAttrs.sha256};var@{Hash_Type}:${SHA256};var@{Incoming_ID}:${threat.id};var@{Message_Text,sigid}:"MVISION EDR:"${threat.threatAttrs.name};var@{severity}:${threat.severity};var@{src_guid}:${threat.maGuid};var@{UserIDSrc}:${user};var@{Threat_Category}:${threat.threatAttrs.name};var@{Threat_Name}:${threat.interpreterFileAttrs.name};fmt@{firsttime, lasttime}:"%Y-%m-%dT%H:%M:%S.%.3f";map@severity:"s0"="25","s1"="25","s2"="50","s3"="50","s4"="75","s5"="75";)]]></text>
+      <tag origin="0">1310720</tag>
+    </rule>
+  </rules>
+</nitro_policy>
