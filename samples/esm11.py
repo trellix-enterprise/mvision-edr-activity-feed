@@ -15,5 +15,5 @@ def any_case_event(event):
     logging.info("ESM CASE EVENT: %s", event)
 
 @subscribe(entity='threat')
-def any_case_event(event):
+def any_threat_event(event):
     logging.info("ESM THREAT EVENT: %s", event)
