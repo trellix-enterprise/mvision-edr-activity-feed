@@ -2,6 +2,8 @@ import os
 import ast
 from setuptools import setup
 
+CWD = os.path.abspath(os.path.dirname(__file__))
+
 def get_version():
     f = open(os.path.join(CWD,'mvision_edr_activity_feed/__init__.py'), 'r')
     code = ast.parse(f.read())
