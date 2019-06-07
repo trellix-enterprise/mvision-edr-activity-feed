@@ -20,8 +20,8 @@ options = jmespath.Options(custom_functions=CustomFunctions())
 
 
 def subscribe(*args, **kwargs):
-    logging.debug("... Subscribe in place ...")
     entity = kwargs.get('entity')
+    logging.debug("... Subscribe in place - entity: %s", entity)   
     subtype = kwargs.get('subtype')
     expression = args[0] if len(args) else None
     if not entity and not expression or len(args) > 1:
