@@ -198,7 +198,7 @@ class Test(unittest.TestCase):
     def test_channel(self):
         pass
     
-    def tes__main__get_config():
+    def tes_get_config():
         this_args =	{
             "config": [ "key1=value1", "key2=value2", "key3=value3" ]
         }
@@ -208,7 +208,9 @@ class Test(unittest.TestCase):
             print (x)
             for y in this_config[x]:
                 print (y,':',this_config[x][y])
-        pass
+        self.assertEqual(this_config["key1"], "value1")
+        self.assertEqual(this_config["key2"], "value2")
+        self.assertEqual(this_config["key3"], "value3")
 
 """
     # CS commented all this code on purpose (TODO: Ask MDC why):
