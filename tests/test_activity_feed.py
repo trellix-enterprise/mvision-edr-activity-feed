@@ -24,7 +24,7 @@ import base64
 import json
 from mock import patch, MagicMock
 from mvision_edr_activity_feed import subscribe, invoke, reset_subscriptions
-from mvision_edr_activity_feed.__main__ import get_config, setup_argument_parser
+from mvision_edr_activity_feed.__main__ import get_config, setup_argument_parser, main as af_main
 from dxlstreamingclient.channel import Channel, ChannelAuth
 
 INTERRUPTED = False
@@ -211,6 +211,9 @@ class Test(unittest.TestCase):
     def test_setup_argument_parser(self):
         p = setup_argument_parser()
         self.assertIsNotNone(p)
+        
+    def test_main(self):
+        af_main()
 
 """
     # CS commented all this code on purpose (TODO: Ask MDC why):
