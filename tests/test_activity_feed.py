@@ -204,9 +204,9 @@ class Test(unittest.TestCase):
                     self.config = new_cfg
         ars = Arguments(["key1=value1","key2=value2","key3=value3"])
         cfg = get_config(ars)
-        self.assertEqual(cfg["key1"], "value1")
-        self.assertEqual(cfg["key2"], "value2")
-        self.assertEqual(cfg["key3"], "value3")
+        self.assertEqual(cfg.__dict__["key1"], "value1")
+        self.assertEqual(cfg.__dict__["key2"], "value2")
+        self.assertEqual(cfg.__dict__["key3"], "value3")
         
     def test_setup_argument_parser(self):
         p = setup_argument_parser()
