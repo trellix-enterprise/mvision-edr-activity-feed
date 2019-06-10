@@ -24,6 +24,7 @@ import base64
 import json
 from mock import patch, MagicMock
 from mvision_edr_activity_feed import subscribe, invoke, reset_subscriptions
+from mvision_edr_activity_feed.__main__ import get_config, setup_argument_parser
 from dxlstreamingclient.channel import Channel, ChannelAuth
 
 INTERRUPTED = False
@@ -196,6 +197,20 @@ class Test(unittest.TestCase):
 
     def test_channel(self):
         pass
+    
+    def test_get_config(self):
+        class Arguments(object):
+            def __init__(self, new_cfg): 
+                    self.config = new_cfg
+        ars = Arguments(["key1=value1","key2=value2","key3=value3"])
+        cfg = get_config(ars)
+        self.assertEqual(cfg.__dict__["key1"], "value1")
+        self.assertEqual(cfg.__dict__["key2"], "value2")
+        self.assertEqual(cfg.__dict__["key3"], "value3")
+        
+    def test_setup_argument_parser(self):
+        p = setup_argument_parser()
+        self.assertIsNotNone(p)
 
 """
     # CS commented all this code on purpose (TODO: Ask MDC why):
