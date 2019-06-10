@@ -199,10 +199,8 @@ class Test(unittest.TestCase):
         pass
     
     def test_get_config(self):
-        class Arguments:
-            def __init__(self, conf):
-            self.config = conf
-        
+        class Arguments(new_cfg):
+            config = new_cfg
         ars = Arguments(["key1=value1","key2=value2","key3=value3"])
         cfg = get_config(ars)
         self.assertEqual(cfg["key1"], "value1")
