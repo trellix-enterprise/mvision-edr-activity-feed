@@ -211,9 +211,6 @@ class Test(unittest.TestCase):
     def test_setup_argument_parser(self):
         p = setup_argument_parser()
         self.assertIsNotNone(p)
-        #ars = this_parser.parse_args()
-        #cfg = get_config(ars)
-        #self.assertIsNotNone(cfg)
 
 """
     # CS commented all this code on purpose (TODO: Ask MDC why):
