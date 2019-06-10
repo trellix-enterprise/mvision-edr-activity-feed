@@ -197,125 +197,125 @@ class Test(unittest.TestCase):
     def test_channel(self):
         pass
 
-    # def test_main(self):
-    #
-    #     case_event = {
-    #         "id": "a45a03de-5c3d-452a-8a37-f68be954e784",
-    #         "entity": "case",
-    #         "type": "creation",
-    #         "tenant-id": "7af4746a-63be-45d8-9fb5-5f58bf909c25",
-    #         "user": "jmdacruz",
-    #         "origin": "",
-    #         "nature": "",
-    #         "timestamp": "",
-    #         "transaction-id": "",
-    #         "case":
-    #             {
-    #                 "id": "c00547df-6d74-4833-95ad-3a377c7274a6",
-    #                 "name": "A great case full of malware",
-    #                 "url": "https://ui-int-cop.soc.mcafee.com/#/cases"
-    #                        "/4e8e23f4-9fe9-4215-92c9-12c9672be9f1",
-    #                 "priority": "Low"
-    #             }
-    #     }
-    #
-    #     encoded_event = base64.b64encode(bytes(json.dumps(case_event), 'utf-8'))
-    #
-    #     with patch('requests.Session') as session:
-    #         session.return_value = MagicMock()  # self.request
-    #         session.return_value.post = MagicMock()
-    #         session.return_value.get = MagicMock()
-    #         session.return_value.delete = MagicMock()
-    #
-    #         create_mock = MagicMock()
-    #         create_mock.status_code = 200
-    #         create_mock.json = MagicMock(
-    #             return_value={'consumerInstanceId': 1234})
-    #
-    #         subscr_mock = MagicMock()
-    #         subscr_mock.status_code = 204
-    #
-    #         consum_mock = MagicMock()
-    #         consum_mock.status_code = 200
-    #         consum_mock.json = MagicMock(
-    #             return_value={'records': [
-    #                 {
-    #                     'routingData': {
-    #                         'topic': 'foo-topic'
-    #                     },
-    #                     'message': {
-    #                         'payload': encoded_event
-    #                     },
-    #                     'partition': 1,
-    #                     'offset': 1
-    #                 }
-    #             ]})
-    #
-    #         # commit_consumer_error_mock = MagicMock()
-    #         # commit_consumer_error_mock.status_code = 404
-    #         # commit_error_mock = MagicMock()
-    #         # commit_error_mock.status_code = 500
-    #         run_mock = MagicMock()
-    #         run_mock.status_code = 204
-    #         # delete_mock = MagicMock()
-    #         # delete_mock.status_code = 204
-    #         # delete_404_mock = MagicMock()
-    #         # delete_404_mock.status_code = 404
-    #         # delete_500_mock = MagicMock()
-    #         # delete_500_mock.status_code = 500
-    #
-    #         session.return_value.post.explode.return_value = [
-    #             create_mock, run_mock]
-    #
-    #         #create_mock, subscr_mock,
-    #             # , commit_consumer_error_mock,
-    #             # commit_error_mock, run_mock]
-    #         session.return_value.get.side_effect = [consum_mock]
-    #         # session.return_value.delete.side_effect = [
-    #         #     delete_500_mock, delete_404_mock, delete_mock]
-    #
-    #         with Channel(self.url,
-    #                      auth= ChannelAuth(self.url, self.username, self.password, verify_cert_bundle=self.verify_cert_bundle),
-    #                      consumer_group=self.consumer_group,
-    #                      verify_cert_bundle=self.verify_cert_bundle) as channel:
-    #
-    #             # def process_callback(payloads):
-    #             #     print("Received payloads: \n%s",
-    #             #           json.dumps(payloads, indent=4, sort_keys=True))
-    #             #     self.assertEqual(payloads[0]['id'],
-    #             #                      'a45a03de-5c3d-452a-8a37-f68be954e784')
-    #
-    #             channel.run(json.dumps(case_event, indent=4, sort_keys=True), wait_between_queries=self.period, topics=self.topic)
-    #
-    #         with self.assertRaises(ConsumerError):
-    #             channel.commit()
-    #         with self.assertRaises(TemporaryError):
-    #             channel.commit()
-    #
-    #         channel.commit()
-    #
-    #     channel.unsubscribe()  # currently noop
-    #
-    #     with self.assertRaises(TemporaryError):
-    #         channel.delete()  # trigger 500
-    #         session.return_value.delete.assert_called_with(
-    #             "http://localhost/databus/consumer-service/v1/consumers/1234")
-    #         session.return_value.delete.reset_mock()
-    #
-    #     channel.delete()  # trigger silent 404
-    #     session.return_value.delete.assert_called_with(
-    #         "http://localhost/databus/consumer-service/v1/consumers/1234")
-    #     session.return_value.delete.reset_mock()
-    #
-    #     channel.consumer_id = "1234"  # resetting consumer
-    #     channel.delete()  # Proper deletion
-    #     session.return_value.delete.assert_called_with(
-    #         "http://localhost/databus/consumer-service/v1/consumers/1234")
-    #     session.return_value.delete.reset_mock()
-    #
-    #     channel.delete()  # trigger early exit
-    #
-    #     INTERRUPTED = False  # re-enabling retry mechanism
+"""
+    # CS commented all this code on purpose (TODO: Ask MDC why):
+    def test_main(self):
+        case_event = {
+            "id": "a45a03de-5c3d-452a-8a37-f68be954e784",
+            "entity": "case",
+            "type": "creation",
+            "tenant-id": "7af4746a-63be-45d8-9fb5-5f58bf909c25",
+            "user": "jmdacruz",
+            "origin": "",
+            "nature": "",
+            "timestamp": "",
+            "transaction-id": "",
+            "case":
+                {
+                    "id": "c00547df-6d74-4833-95ad-3a377c7274a6",
+                    "name": "A great case full of malware",
+                    "url": "https://ui-int-cop.soc.mcafee.com/#/cases"
+                           "/4e8e23f4-9fe9-4215-92c9-12c9672be9f1",
+                    "priority": "Low"
+                }
+        }
+   
+        encoded_event = base64.b64encode(bytes(json.dumps(case_event), 'utf-8'))
+   
+        with patch('requests.Session') as session:
+            session.return_value = MagicMock()  # self.request
+            session.return_value.post = MagicMock()
+            session.return_value.get = MagicMock()
+            session.return_value.delete = MagicMock()
+   
+            create_mock = MagicMock()
+            create_mock.status_code = 200
+            create_mock.json = MagicMock(
+                return_value={'consumerInstanceId': 1234})
+   
+            subscr_mock = MagicMock()
+            subscr_mock.status_code = 204
+   
+            consum_mock = MagicMock()
+            consum_mock.status_code = 200
+            consum_mock.json = MagicMock(
+                return_value={'records': [
+                    {
+                        'routingData': {
+                            'topic': 'foo-topic'
+                        },
+                        'message': {
+                            'payload': encoded_event
+                        },
+                        'partition': 1,
+                        'offset': 1
+                    }
+                ]})
+   
+            # commit_consumer_error_mock = MagicMock()
+            # commit_consumer_error_mock.status_code = 404
+            # commit_error_mock = MagicMock()
+            # commit_error_mock.status_code = 500
+            run_mock = MagicMock()
+            run_mock.status_code = 204
+            # delete_mock = MagicMock()
+            # delete_mock.status_code = 204
+            # delete_404_mock = MagicMock()
+            # delete_404_mock.status_code = 404
+            # delete_500_mock = MagicMock()
+            # delete_500_mock.status_code = 500
+   
+            session.return_value.post.explode.return_value = [
+                create_mock, run_mock]
+            #create_mock, subscr_mock, commit_consumer_error_mock,
+            # commit_error_mock, run_mock]
+            
+            session.return_value.get.side_effect = [consum_mock]
+            # session.return_value.delete.side_effect = [
+            #     delete_500_mock, delete_404_mock, delete_mock]
+   
+            with Channel(self.url,
+                         auth= ChannelAuth(self.url, self.username, self.password, verify_cert_bundle=self.verify_cert_bundle),
+                         consumer_group=self.consumer_group,
+                         verify_cert_bundle=self.verify_cert_bundle) as channel:        
+        
+                # def process_callback(payloads):
+                #     print("Received payloads: \n%s",
+                #           json.dumps(payloads, indent=4, sort_keys=True))
+                #     self.assertEqual(payloads[0]['id'],
+                #                      'a45a03de-5c3d-452a-8a37-f68be954e784')
+   
+                channel.run(json.dumps(case_event, indent=4, sort_keys=True), wait_between_queries=self.period, topics=self.topic)
+   
+            with self.assertRaises(ConsumerError):
+                channel.commit()
+            with self.assertRaises(TemporaryError):
+                channel.commit()
+   
+            channel.commit()
+   
+            channel.unsubscribe()  # currently noop
+   
+            with self.assertRaises(TemporaryError):
+                channel.delete()  # trigger 500
+                session.return_value.delete.assert_called_with(
+                    "http://localhost/databus/consumer-service/v1/consumers/1234")
+                session.return_value.delete.reset_mock()
+            
+            channel.delete()  # trigger silent 404
+            session.return_value.delete.assert_called_with(
+            "http://localhost/databus/consumer-service/v1/consumers/1234")
+            session.return_value.delete.reset_mock()
+    
+            channel.consumer_id = "1234"  # resetting consumer
+            channel.delete()  # Proper deletion
+            session.return_value.delete.assert_called_with(
+                "http://localhost/databus/consumer-service/v1/consumers/1234")
+            session.return_value.delete.reset_mock()
+            
+            channel.delete()  # trigger early exit
+            INTERRUPTED = False  # re-enabling retry mechanism
+"""
 
 if __name__ == '__main__':
     unittest.main()
