@@ -201,7 +201,7 @@ class Test(unittest.TestCase):
         this_args =	{
             "config": [ "key1=value1", "key2=value2", "key3=value3" ]
         }
-        var this_config = get_config(this_args)
+        this_config = get_config(this_args)
         print "about to print config ..."
         for x in this_config:
             print (x)
