@@ -203,7 +203,7 @@ class Test(unittest.TestCase):
             "config": [ "key1=value1", "key2=value2", "key3=value3" ]
         }
         this_config = get_config(this_args)
-        print "about to print config ..."
+        print ("about to print config ...")
         for x in this_config:
             print (x)
             for y in this_config[x]:
