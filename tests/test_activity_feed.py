@@ -23,7 +23,7 @@ import jmespath
 import base64
 import json
 from mock import patch, MagicMock
-from mvision_edr_activity_feed import subscribe, invoke, reset_subscriptions
+from mvision_edr_activity_feed import subscribe, invoke, reset_subscriptions, get_config
 from dxlstreamingclient.channel import Channel, ChannelAuth
 
 INTERRUPTED = False
@@ -195,6 +195,18 @@ class Test(unittest.TestCase):
         pass
 
     def test_channel(self):
+        pass
+    
+    def tes__main__get_config():
+        this_args =	{
+            "config": [ "key1=value1", "key2=value2", "key3=value3" ]
+        }
+        var config = get_config(this_args)
+        print "mvedr-activity-feed setup successfully"
+        for x in config:
+            print (x)
+            for y in config[x]:
+                print (y,':',config[x][y])
         pass
 
 """
