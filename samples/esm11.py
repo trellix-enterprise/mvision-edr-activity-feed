@@ -44,7 +44,7 @@ def setup():
             # user configures rsyslog.conf to point to remote ESM because:
             # 1. TLS can be configured from local sys log to remote ESM (In order to avoid Man in the Middle Attack)
             # 2. More performant as rsyslog can be configured to send batches
-            # Anyways, ut the SDK client developer decides to not poin tolcally simply pass url to SysLogHandler: 
+            # Anyways, if the SDK client developer decides to not point lolcally simply pass url to SysLogHandler: 
             # handler = SysLogHandler(address=('ESM_REMOTE_SERVER_IP', UDP_OR_TLS_PORT))
             logger = logging.getLogger()
             handler = SysLogHandler(address='/dev/log')
