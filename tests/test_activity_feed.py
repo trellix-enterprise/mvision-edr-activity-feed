@@ -201,12 +201,12 @@ class Test(unittest.TestCase):
         this_args =	{
             "config": [ "key1=value1", "key2=value2", "key3=value3" ]
         }
-        var config = get_config(this_args)
-        print "mvedr-activity-feed setup successfully"
-        for x in config:
+        var this_config = get_config(this_args)
+        print "about to print config ..."
+        for x in this_config:
             print (x)
-            for y in config[x]:
-                print (y,':',config[x][y])
+            for y in this_config[x]:
+                print (y,':',this_config[x][y])
         pass
 
 """
