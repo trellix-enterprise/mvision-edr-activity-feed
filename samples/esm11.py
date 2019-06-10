@@ -1,4 +1,29 @@
 """
+MCAFEE CONFIDENTIAL
+Copyright (c) 2019 McAfee, LLC
+The source code contained or described herein and all documents related
+to the source code ("Material") are owned by McAfee or its
+suppliers or licensors. Title to the Material remains with McAfee
+or its suppliers and licensors. The Material contains trade
+secrets and proprietary and confidential information of McAfee or its
+suppliers and licensors. The Material is protected by worldwide copyright
+and trade secret laws and treaty provisions. No part of the Material may
+be used, copied, reproduced, modified, published, uploaded, posted,
+transmitted, distributed, or disclosed in any way without McAfee's prior
+express written permission.
+No license under any patent, copyright, trade secret or other intellectual
+property right is granted to or conferred upon you by disclosure or
+delivery of the Materials, either expressly, by implication, inducement,
+estoppel or otherwise. Any license under such intellectual property rights
+must be express and approved by McAfee in writing.
+"""
+
+from mvision_edr_activity_feed import subscribe
+from samples.esm import EsmEvents
+from logging.handlers import SysLogHandler
+import logging
+
+"""
 ESM11 subscription to Threat and Case entities:
 Please notice that SysLogHandler is set locally and then its recommended to:
 1.Point rsyslog.conf to REMOTE ESM
@@ -6,11 +31,6 @@ Please notice that SysLogHandler is set locally and then its recommended to:
 (ASP Passive DS must be enabled for TLS too so Threat evidence packets can't
 be expossed to Man In de Middle attacks)
 """
-from mvision_edr_activity_feed import subscribe
-from samples.esm import EsmEvents
-from logging.handlers import SysLogHandler
-import logging
-
 esm_events = None
 
 def setup():
@@ -24,7 +44,7 @@ def setup():
             # user configures rsyslog.conf to point to remote ESM because:
             # 1. TLS can be configured from local sys log to remote ESM (In order to avoid Man in the Middle Attack)
             # 2. More performant as rsyslog can be configured to send batches
-            # Anyways, ut the SDK client developer decides to not poin tolcally simply pass url to SysLogHandler: 
+            # Anyways, if the SDK client developer decides to not point lolcally simply pass url to SysLogHandler: 
             # handler = SysLogHandler(address=('ESM_REMOTE_SERVER_IP', UDP_OR_TLS_PORT))
             logger = logging.getLogger()
             handler = SysLogHandler(address='/dev/log')
