@@ -41,6 +41,31 @@ class Test(unittest.TestCase):
 
     def tearDown(self):
         pass
+    
+    def test_get_config(self):
+        print ("about to test get_config ...")
+        try:
+            this_args =	{
+                "config": [ "key1=value1", "key2=value2", "key3=value3" ]
+            }
+            this_config = get_config(this_args)
+            for x in this_config:
+                print (x)
+                for y in this_config[x]:
+                    print (y,':',this_config[x][y])
+            self.assertEqual(this_config["key1"], "value1")
+            self.assertEqual(this_config["key2"], "value2")
+            self.assertEqual(this_config["key3"], "value3")
+        except Exception as e:
+            print ("Unable to test get_config")
+        
+    def test_setup_argument_parser(self):
+        print ("about to test setup_argument_parser ...")
+        try:
+            this_parser = setup_argument_parser()
+            self.assertIsNotNone(this_parser)
+        except Exception as e:
+            print ("Unable to test setup_argument_parser")
 
     def test_subscription(self):
 
@@ -197,24 +222,6 @@ class Test(unittest.TestCase):
 
     def test_channel(self):
         pass
-    
-    def tes_get_config(self):
-        this_args =	{
-            "config": [ "key1=value1", "key2=value2", "key3=value3" ]
-        }
-        this_config = get_config(this_args)
-        print ("about to print config ...")
-        for x in this_config:
-            print (x)
-            for y in this_config[x]:
-                print (y,':',this_config[x][y])
-        self.assertEqual(this_config["key1"], "value1")
-        self.assertEqual(this_config["key2"], "value2")
-        self.assertEqual(this_config["key3"], "value3")
-        
-    def tes_setup_argument_parser(self):
-        this_parser = setup_argument_parser()
-        self.assertIsNotNone(this_parser)
 
 """
     # CS commented all this code on purpose (TODO: Ask MDC why):
