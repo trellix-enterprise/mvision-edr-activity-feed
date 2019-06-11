@@ -213,8 +213,7 @@ class Test(unittest.TestCase):
         self.assertIsNotNone(p)
         
     def test_main(self):
-        # TODO:
-        #af_main()
+        af_main()
         pass
 
 """
@@ -338,4 +337,7 @@ class Test(unittest.TestCase):
 """
 
 if __name__ == '__main__':
-    unittest.main()
+    # The following way the utests exit if main failure exit is called when checking arguments (Utest valid case).
+    # Solution recommended: https://stackoverflow.com/questions/79754/unittest-causing-sys-exit
+    #unittest.main()
+    unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(Test))
