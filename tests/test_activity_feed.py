@@ -215,8 +215,6 @@ class Test(unittest.TestCase):
     def test_main(self):
         with self.assertRaises(SystemExit) as pytest_wrapped_e:
             af_main()
-        #assert pytest_wrapped_e.type == SystemExit
-        #assert pytest_wrapped_e.value.code == 42
 
 """
     # CS commented all this code on purpose (TODO: Ask MDC why):
