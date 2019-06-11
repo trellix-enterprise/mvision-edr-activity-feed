@@ -24,7 +24,7 @@ import base64
 import json
 from mock import patch, MagicMock
 from mvision_edr_activity_feed import subscribe, invoke, reset_subscriptions
-from mvision_edr_activity_feed.__main__ import get_config, setup_argument_parser
+from mvision_edr_activity_feed.__main__ import get_config, setup_argument_parser, main as af_main
 from dxlstreamingclient.channel import Channel, ChannelAuth
 
 INTERRUPTED = False
@@ -211,6 +211,10 @@ class Test(unittest.TestCase):
     def test_setup_argument_parser(self):
         p = setup_argument_parser()
         self.assertIsNotNone(p)
+        
+    def test_main(self):
+        with self.assertRaises(SystemExit) as pytest_wrapped_e:
+            af_main()
 
 """
     # CS commented all this code on purpose (TODO: Ask MDC why):
@@ -333,4 +337,7 @@ class Test(unittest.TestCase):
 """
 
 if __name__ == '__main__':
-    unittest.main()
+    # The following way the utests exit if main failure exit is called when checking arguments (Utest valid case).
+    # Solution recommended: https://stackoverflow.com/questions/79754/unittest-causing-sys-exit
+    #unittest.main()
+    unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(Test))
