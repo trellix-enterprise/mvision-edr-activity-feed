@@ -1,4 +1,4 @@
-# MVISION EDR - ACTIVITY FEED [![Latest PyPI Version](https://img.shields.io/pypi/v/dxlstreamingclient.svg)](https://pypi.python.org/pypi/dxlstreamingclient) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?branch=master)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
+# MVISION EDR - ACTIVITY FEED [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?branch=master)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
 
 
 ## OVERVIEW
