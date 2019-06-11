@@ -213,10 +213,10 @@ class Test(unittest.TestCase):
         self.assertIsNotNone(p)
         
     def test_main(self):
-        with self.raises(SystemExit) as pytest_wrapped_e:
+        with self.assertRaises(SystemExit) as pytest_wrapped_e:
             af_main()
-        assert pytest_wrapped_e.type == SystemExit
-        assert pytest_wrapped_e.value.code == 42
+        self.assertEqual(pytest_wrapped_e.type, SystemExit)
+        self.assertEqual(pytest_wrapped_e.value.code, 42)
 
 """
     # CS commented all this code on purpose (TODO: Ask MDC why):
