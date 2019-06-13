@@ -41,7 +41,7 @@ load-plugins=
 #disable=F0401,W0141,W0611,W0110,W0703,W0142
 # Avoid errors caused by environment checks as we are using os.ver runtime checks to avoid
 # deprecated code usage:
-disable=W,C,R,E0081,E0015
+disable=W,C,R,E81,E15
 
 
 [REPORTS]
