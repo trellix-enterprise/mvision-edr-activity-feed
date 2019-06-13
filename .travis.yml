@@ -21,12 +21,17 @@ env:
 
 # command to install dependencies
 install:
+  - pip install pylint
   - pip install pipenv
   - pipenv install --dev --skip-lock # TODO: improve pipenv running
+
+before_script:
+  - pylint --version
 
 # command to run tests
 script:
   - pytest --cov-report term --cov-report html:cov_html --cov-config=.coveragerc --cov=$PACKAGENAME
+  - pylint  $PACKAGENAME
   
 # run coverage
 after_success:
