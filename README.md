@@ -151,6 +151,3 @@ under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 
-
-## TRAVIS CI STATUS [![build status](https://travis-ci.org/mcafee/mvision-edr-activity-feed.svg?branch=master)](https://travis-ci.org/mcafee/mvision-edr-activity-feed)
-- For further details about Travis CI see https://travis-ci.org/getting_started. Additionally, for improving template with more advanced info (including coverage, automatic deployment, etc.) check out http://github.com/uwescience/shablona. 
