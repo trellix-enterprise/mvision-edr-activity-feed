@@ -129,6 +129,32 @@ You can also mix several modules in a single call:
 
     mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --username YOUR_USERNAME --password YOUR_PASSWORD --module samples.generic --module samples.individual --loglevel=debug
 
+## BUILDING DOCKER IMAGE
+
+.. code:: shell
+    docker build --rm --build-arg esm_ip=<ESM_COLLECTOR_IP> -t mvision-edr-activity-feed .
+
+If you are behind a proxy, add the following parameter while building the image:
+
+.. code:: shell
+    --build-arg HTTP_PROXY="<PROXY_URL_OR_IP:PROXY_PORT>" \
+    --build-arg HTTPS_PROXY="<PROXY_URL_OR_IP:PROXY_PORT>" \
+    --build-arg http_proxy="<PROXY_URL_OR_IP:PROXY_PORT>" \
+    --build-arg http_proxys="<PROXY_URL_OR_IP:PROXY_PORT>" 
+
+## RUNNING DOCKER IMAGE
+
+docker run mvision-edr-activity-feed \
+    --url https://api-pre-cop.soc.mcafee.com \
+    --username user \
+    --password pass \
+    --module samples.esm11 \
+    --loglevel debug
+
+If you are behind a proxy, add the following parameter:
+
+.. code:: shell
+    --env HTTPS_PROXY="<PROXY_URL_OR_IP:PROXY_PORT>"
 
 ## BUGS AND FEEDBACK
 

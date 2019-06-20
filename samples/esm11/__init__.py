@@ -58,11 +58,11 @@ def setup():
         except Exception as e:
             logging.error("***Error while setting up SysLogHandler or FileHandler for ESM")
 
-@subscribe(entity='case')
-def any_case_event(event):
-    logging.info("ESM CASE EVENT: %s", event)
-    setup()
-    esm_events.send_case(event)
+# @subscribe(entity='case')
+# def any_case_event(event):
+#     logging.info("ESM CASE EVENT: %s", event)
+#     setup()
+#     esm_events.send_case(event)
 
 @subscribe(entity='threat')
 def any_threat_event(event):

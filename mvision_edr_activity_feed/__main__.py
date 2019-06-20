@@ -124,7 +124,7 @@ def main():
 
     configs = get_config(args)
 
-    logging.info("Sarting event loop...")
+    logging.info("Starting event loop...")
 
     try:
         with Channel(args.url,
