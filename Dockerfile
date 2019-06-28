@@ -17,7 +17,11 @@ WORKDIR /mvision-edr-activity-feed/
 
 RUN python setup.py install
 
-RUN echo ':msg, startswith, "CAIRO_THREAT" action(type="omfwd" target="'$ESM_IP'" port="514" protocol="tcp")' >> /etc/rsyslog.conf
+# Discard everything that is not MVISION EDR threat.
+# i.e. ignore (~) every message the doesn't (!) contains "Threat Detection Summary"
+RUN echo ':msg, !contains, "Threat Detection Summary" ~' >> /etc/rsyslog.d/30-mvision.conf
+# Forward everything to ESM
+RUN echo '*.* @@'$ESM_IP':514' >> /etc/rsyslog.d/30-mvision.conf
 
 # Note: You may get some standard output like shown below. You
 # can ignore this and rsyslog will continue running as usual.

@@ -107,8 +107,19 @@ rsyslog.conf that can be used as an example: https://github.com/mcafee/mvision-e
 
 ## PARSING RULE IN CASE OF SIEM
 
-In case of a SIEM of type ESM, it's recommended to import the following parsing rule to ASP General Parser in order to see the event categorized as MVDER Suspicious Activity (Displayed in Events View with proper details instead of Unknown event): https://github.com/mcafee/mvision-edr-activity-feed/blob/feature/activity_feed_integration/RULE_MVISION_EDR_THREAT.xml    
+In case of a SIEM of type ESM, it's recommended to import the following parsing rule to ASP General Parser in order to see the event categorized as MVDER Suspicious Activity (Displayed in Events View with proper details instead of Unknown event): https://github.com/mcafee/mvision-edr-activity-feed/blob/feature/activity_feed_integration/RULE_MVISION_EDR_THREAT.xml
 
+### How to setup ESM for parsing MVISION EDR Threat events
+
+* Go to `Policy Editor`. On the menu bar go to `File`, `Import`, `Rules` and click on `Import Rules`. A pop-up windows will prompt.
+* Upload `RULE_MVISION_EDR_THREAT.xml` policy.
+* Go back to the `Policy Editor` window and filter the list to locate the rule uploaded on the previous step (i.e. using `Signature ID`).
+* Make sure the rule is enabled.
+
+### Create an alarm
+
+* Go to `Configuration`. On the system navigation tree, select the ESM, then click the `Properties`.
+* Add an alarm type `Internal Event Match`, having a `Field` type `Normalized ID` and the corresponding value. 
 
 ## RUNNING THE EXAMPLES
 
@@ -131,30 +142,36 @@ You can also mix several modules in a single call:
 
 ## BUILDING DOCKER IMAGE
 
-.. code:: shell
+```
     docker build --rm --build-arg esm_ip=<ESM_COLLECTOR_IP> -t mvision-edr-activity-feed .
+```
 
 If you are behind a proxy, add the following parameter while building the image:
 
-.. code:: shell
+```
     --build-arg HTTP_PROXY="<PROXY_URL_OR_IP:PROXY_PORT>" \
     --build-arg HTTPS_PROXY="<PROXY_URL_OR_IP:PROXY_PORT>" \
     --build-arg http_proxy="<PROXY_URL_OR_IP:PROXY_PORT>" \
     --build-arg http_proxys="<PROXY_URL_OR_IP:PROXY_PORT>" 
+```
 
 ## RUNNING DOCKER IMAGE
 
+```
 docker run mvision-edr-activity-feed \
-    --url https://api-pre-cop.soc.mcafee.com \
+    --url https://api.soc.mcafee.com \
     --username user \
     --password pass \
     --module samples.esm11 \
     --loglevel debug
 
+```
+
 If you are behind a proxy, add the following parameter:
 
-.. code:: shell
+```
     --env HTTPS_PROXY="<PROXY_URL_OR_IP:PROXY_PORT>"
+```
 
 ## BUGS AND FEEDBACK
 

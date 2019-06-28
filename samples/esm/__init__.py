@@ -31,4 +31,4 @@ class EsmEvents(object):
     def send_threat(self, event):
         # It uses SysLogHandler configured in esm main module so we only need to dump the Threat event:
         logging.debug(">>>Sending ESM threat...")
-        logging.info("CAIRO_THREAT: {}".format(json.dumps(event)))
+        logging.info(json.dumps(event))

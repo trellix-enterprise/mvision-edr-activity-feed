@@ -66,7 +66,6 @@ def setup():
 
 @subscribe(entity='threat')
 def any_threat_event(event):
-    logging.info("ESM THREAT EVENT: %s", event)
     setup()
     esm_events.send_threat(event)
     
