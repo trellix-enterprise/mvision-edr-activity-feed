@@ -18,9 +18,9 @@ WORKDIR /mvision-edr-activity-feed/
 RUN python setup.py install
 
 # Discard everything that is not MVISION EDR threat.
-# i.e. ignore (~) every message the doesn't (!) contains "Threat Detection Summary"
+# i.e. ignore (~) every message that doesn't (!) contain "Threat Detection Summary" string
 RUN echo ':msg, !contains, "Threat Detection Summary" ~' >> /etc/rsyslog.d/30-mvision.conf
-# Forward everything to ESM
+# Forward everything else to ESM
 RUN echo '*.* @@'$ESM_IP':514' >> /etc/rsyslog.d/30-mvision.conf
 
 # Note: You may get some standard output like shown below. You
