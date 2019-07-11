@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 ARG ESM_IP
 
 RUN apt-get update && \
-    apt-get install -y rsyslog python python-pip python-setuptools systemd && \
+    apt-get install -y rsyslog python python-pip python-setuptools systemd net-tools iputils-ping && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip install --trusted-host pypi.python.org \
