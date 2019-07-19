@@ -102,12 +102,12 @@ Note that there are two ways to subscribe to events:
 
 In case of using rsyslog for remote logging please follow the documentation explained here: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server-in-centos-7/
 
-rsyslog.conf that can be used as an example: https://github.com/mcafee/mvision-edr-activity-feed/blob/feature/activity_feed_integration/rsyslog.conf
+rsyslog.conf that can be used as an example: https://github.com/mcafee/mvision-edr-activity-feed/blob/develop/rsyslog.conf
 
 
 ## PARSING RULE IN CASE OF SIEM
 
-In case of a SIEM of type ESM, it's recommended to import the following parsing rule to ASP General Parser in order to see the event categorized as MVDER Suspicious Activity (Displayed in Events View with proper details instead of Unknown event): https://github.com/mcafee/mvision-edr-activity-feed/blob/feature/activity_feed_integration/RULE_MVISION_EDR_THREAT.xml    
+In case of a SIEM of type ESM, it's recommended to import the following parsing rule to ASP General Parser in order to see the event categorized as MVDER Suspicious Activity (Displayed in Events View with proper details instead of Unknown event): https://github.com/mcafee/mvision-edr-activity-feed/blob/develop/RULE_MVISION_EDR_THREAT.xml   
 
 
 ## RUNNING THE EXAMPLES
