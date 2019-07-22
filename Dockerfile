@@ -14,7 +14,7 @@ RUN pip install --trusted-host pypi.python.org \
 
 COPY . /mvision-edr-activity-feed/
 WORKDIR /mvision-edr-activity-feed/
-RUN cp -r samples/esm11 .
+RUN cp -r samples/syslog .
 
 RUN python setup.py install
 

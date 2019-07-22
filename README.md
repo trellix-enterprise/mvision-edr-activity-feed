@@ -155,7 +155,7 @@ docker run mvision-edr-activity-feed \
     --url https://api.soc.mcafee.com \
     --username user \
     --password pass \
-    --module esm11 \
+    --module syslog \
     --loglevel debug
 
 ```
