@@ -90,3 +90,5 @@ ENV/
 .ropeproject
 
 .vscode/
+.DS_Store
+.pytest_cache/*
