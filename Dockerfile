@@ -18,6 +18,8 @@ RUN cp -r samples/syslog_forwarder .
 
 RUN python setup.py install
 
+# Filter duplicated messages
+RUN echo '$RepeatedMsgReduction off' >> /etc/rsyslog.d/30-mvision.conf
 # Discard everything that is not MVISION EDR threat.
 # i.e. ignore (~) every message that doesn't (!) contain "Threat Detection Summary" string
 RUN echo ':msg, !contains, "Threat Detection Summary" ~' >> /etc/rsyslog.d/30-mvision.conf
