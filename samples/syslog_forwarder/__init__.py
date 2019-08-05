@@ -21,8 +21,9 @@ must be express and approved by McAfee in writing.
 from mvision_edr_activity_feed import subscribe
 from logging.handlers import SysLogHandler
 import logging
+import json
 
-esm_events = None
+logging.debug("Imported: %s", __name__)
 
 def setup():
     try:
@@ -38,7 +39,7 @@ def setup():
 
 
 @subscribe(entity='threat')
-def any_threat_event(event):
+def send_threat(event):
     setup()
-    esm_events.send_threat(event)
+    logging.info(json.dumps(event))
     
