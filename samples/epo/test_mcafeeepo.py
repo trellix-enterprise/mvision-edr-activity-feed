@@ -23,7 +23,6 @@ from unittest import TestCase
 
 from mock import mock, Mock
 
-from samples.epo.mcafee import client
 from samples.epo.mcafeeepo import threat_event
 
 
@@ -58,8 +57,8 @@ class test_mcafeeepo(TestCase):
                 "threatAttrs": {
                     "name": "test.exe",
                     "path": "\\test\\test.exe",
-                    "md5": hashlib.md5("test").hexdigest(),
-                    "sha256": hashlib.md5("test").hexdigest()
+                    "md5": hashlib.md5("test".encode('utf-8')).hexdigest(),
+                    "sha256": hashlib.md5("test".encode('utf-8')).hexdigest()
                 },
                 "detectionTags": {"tag1", "tag2"}
             }

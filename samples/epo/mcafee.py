@@ -1,15 +1,22 @@
 # Copyright (C) 2009-2013 McAfee, Inc.  All Rights Reserved.
-import httplib
 import json
 import logging
-import mimetools
 import mimetypes
-import socket
 import ssl
-import sys
-import urllib2
-from urllib import quote
-from urllib2 import HTTPError, URLError, Request
+import uuid
+
+from future.backports import socket
+from future.backports.urllib.error import HTTPError, URLError
+from future.backports.urllib.parse import quote
+from future.backports.urllib.request import Request
+from future.moves import sys
+
+if sys.version_info >= (3,):
+    import http.client as httplib
+    from urllib import request as urllib2
+else:
+    import httplib
+    import urllib2
 
 CREATE_LOG_FILE = False
 LOG_FILE = 'pyclient.log'
@@ -82,7 +89,7 @@ def _encode_multipart_formdata(fields):
     body, content_type = _encode_multipart_formdata(fields)
     """
 
-    BOUNDARY = '--' + mimetools.choose_boundary()
+    BOUNDARY = '--' + uuid.uuid4().hex
 
     body = ''
 
@@ -532,7 +539,7 @@ class client(object):
             >>> mc.core.commandName()
         """
         log(logging.INFO, "Creating client to '%s:%s' using '%s' requesting '%s' output (display=%d)" % (
-        host, str(port), protocol, output, display))
+            host, str(port), protocol, output, display))
         self._invoker = _CommandInvoker(host, port, username, password, protocol, output, display)
         # hit the server so we can verify server and credentials will throw on error
         self._invoker.save_token()
