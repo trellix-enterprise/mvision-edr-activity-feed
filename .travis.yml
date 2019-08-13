@@ -21,6 +21,7 @@ env:
 
 # command to install dependencies
 install:
+  - pip install future
   - pip install pylint
   - pip install pipenv
   - pipenv install --dev --skip-lock # TODO: improve pipenv running
