@@ -23,12 +23,13 @@ from unittest import TestCase
 
 from mock import mock, Mock
 
-from epo.mcafeeepo import threat_event
+from samples.epo.mcafee import client
+from samples.epo.mcafeeepo import threat_event
 
 
 class test_mcafeeepo(TestCase):
 
-    @mock.patch('epo.mcafee.client', autospec=True)
+    @mock.patch('samples.epo.mcafee.client', autospec=True)
     def test_threat_event(self, mock_client):
 
         # noinspection PyUnusedLocal

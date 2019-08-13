@@ -17,11 +17,16 @@ delivery of the Materials, either expressly, by implication, inducement,
 estoppel or otherwise. Any license under such intellectual property rights
 must be express and approved by McAfee in writing.
 """
+import json
+import logging
 import os
+
+from mvision_edr_activity_feed import subscribe
+from samples.epo import mcafee
 
 """Example of McAfee ePO threat event creation
 
-Generate an ePO Threat Event with info provided by 
+Generate an ePO Threat Event with info provided by MVISION EDR activity feed 
 
 Usage:
 /python -m mvision_edr_activity_feed --consumer-group <test_consumer_group> 
@@ -32,15 +37,10 @@ Usage:
                                      --loglevel=debug 
                                      --config host=<epo_host> 
                                      --config port=<epo_port>
-                                      --config username=<epo_username> 
-                                      --config password=<epo_password>
+                                     --config username=<epo_username> 
+                                     --config password=<epo_password>
 
 """
-import json
-import logging
-
-import mcafee
-from mvision_edr_activity_feed import subscribe
 
 THRESHOLD_SCORE = 70
 THREAT_EVENT_REMOTE_COMMAND = "DxlBrokerMgmt.createEpoThreatEvent"
