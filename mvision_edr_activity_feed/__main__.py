@@ -124,7 +124,7 @@ def main():
 
     configs = get_config(args)
 
-    logging.info("Sarting event loop...")
+    logging.info("Starting event loop...")
 
     try:
         with Channel(args.url,
@@ -136,8 +136,8 @@ def main():
                      verify_cert_bundle=args.cert_bundle) as channel:
 
             def process_callback(payloads):
-                print("Received payloads: \n%s",
-                      json.dumps(payloads, indent=4, sort_keys=True))
+                logging.debug("Received payloads: \n%s",
+                              json.dumps(payloads, indent=4, sort_keys=True))
                 invoke(payloads, configs)
                 return True
 
