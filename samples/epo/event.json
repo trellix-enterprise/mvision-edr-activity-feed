@@ -1,0 +1,68 @@
+{  
+   "eventMsgType":"McAfee MVISION EDR Event",
+   "eventMsgVersion":"1.0",
+   "event":{  
+      "category":"McAfee MVISION EDR Threat Alert",
+      "eventDesc":"",
+      "eventId":20000,
+      "_receivedUTC":"",
+      "threatActionTaken":"none",
+      "threatHandled":0,
+      "threatName":"",
+      "threatSeverity":1,
+      "threatType":"McAfee MVISION EDR threat",
+      "uri":"",
+      "analyzer":{  
+         "contentVersion":"",
+         "detectionMethod":"McAfee MVISION EDR",
+         "detectedUTC":"",
+         "engineVersion":"",
+         "hostName":"",
+         "id":"MV__EDR",
+         "ipv4":"",
+         "ipv6":"",
+         "mac":"",
+         "name":"McAfee MVISION EDR",
+         "version":"3.0.0.355"         
+      },
+      "entity":{  
+         "groupName":null,
+         "id":"",
+         "osPlatform":"",
+         "osType":"",
+         "ruleName":"",
+         "sessionID":null,
+         "type":"device"
+      },
+      "files":[  
+         {  
+            "name":"",
+            "hash":{  
+               "SHA-256":"",
+               "MD5":""
+            }
+         }
+      ],      
+      "source":{  
+         "hostName":"",
+         "ipv4":"",
+         "ipv6":"",
+         "mac":"",
+         "port":null,
+         "processName":"",
+         "url":"",
+         "userName":""         
+      },
+      "target":{  
+         "fileName":"",
+         "hostName":"",
+         "ipv4":"",
+         "ipv6":"",
+         "mac":"",
+         "port":0,
+         "processName":"",
+         "protocol":"",
+         "userName":""
+      }
+   }
+}
