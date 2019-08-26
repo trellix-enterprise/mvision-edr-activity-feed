@@ -5,7 +5,6 @@ import mimetypes
 import ssl
 import uuid
 
-from future.backports import socket
 from future.backports.urllib.error import HTTPError, URLError
 from future.backports.urllib.parse import quote
 from future.backports.urllib.request import Request
@@ -14,9 +13,11 @@ from future.moves import sys
 if sys.version_info >= (3,):
     import http.client as httplib
     from urllib import request as urllib2
+    from _socket import socket
 else:
     import httplib
     import urllib2
+    import socket
 
 CREATE_LOG_FILE = False
 LOG_FILE = 'pyclient.log'
