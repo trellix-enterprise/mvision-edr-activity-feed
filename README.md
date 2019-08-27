@@ -107,7 +107,7 @@ rsyslog.conf that can be used as an example: https://github.com/mcafee/mvision-e
 
 ## PARSING RULE IN CASE OF SIEM
 
-In case of a SIEM of type ESM, it's recommended to import the following parsing rule to ASP General Parser in order to see the event categorized as MVDER Suspicious Activity (Displayed in Events View with proper details instead of Unknown event): https://github.com/mcafee/mvision-edr-activity-feed/blob/develop/RULE_MVISION_EDR_THREAT.xml   
+In case of a SIEM of type ESM (syslog_forwarder usage), it's recommended to import the following parsing rule to ASP General Parser in order to see the event categorized as MVDER Suspicious Activity (Displayed in Events View with proper details instead of Unknown event): https://github.com/mcafee/mvision-edr-activity-feed/blob/master/RULE_MVISION_EDR_THREAT.xml  
 
 
 ## RUNNING THE EXAMPLES
