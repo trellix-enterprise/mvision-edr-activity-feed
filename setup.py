@@ -75,7 +75,7 @@ opts = dict(
 if __name__ == '__main__':
     try:
         setup(**opts)
-        print "mvedr-activity-feed setup successfully"
+        print("mvedr-activity-feed setup successfully")
     except Exception as e:
-        print e
+        print(e)
         raise Exception("Unable to setup mvedr-activity-feed")
