@@ -128,6 +128,10 @@ You can also mix several modules in a single call:
 .. code:: shell
 
     mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --username YOUR_USERNAME --password YOUR_PASSWORD --module samples.generic --module samples.individual --loglevel=debug
+    
+.. code:: shell
+
+    mvision-edr-activity-feed --url https://api.soc.mcafee.com/ --username 0812toe6@mvisionedr.technology --password MFEpoctnyGpGgsPf!6 --module samples.syslog_forwarder --loglevel=debug
 
 ## PARSING RULE ON McAfee SIEM
 
@@ -215,4 +219,3 @@ Unless required by applicable law or agreed to in writing, software distributed
 under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
-
