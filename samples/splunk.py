@@ -45,3 +45,7 @@ def send_threat(event):
     setup()
     logging.info(json.dumps(event))
     
+@subscribe(entity='case')
+def any_case_event(event):
+    setup()
+    logging.info(json.dumps(event))
