@@ -17,7 +17,7 @@ delivery of the Materials, either expressly, by implication, inducement,
 estoppel or otherwise. Any license under such intellectual property rights
 must be express and approved by McAfee in writing.
 
-sudo mvision-edr-activity-feed --url https://api.soc.mcafee.com/ --username 0812toe6@mvisionedr.technology --password MFEpoctnyGpGgsPfsudo apt-get update --module samples.syslog_forwarder --loglevel=debug
+sudo mvision-edr-activity-feed --url https://api.soc.mcafee.com/ --username 0812toe6@mvisionedr.technology --password MFEpoctnyGpGgsPf\!6 apt-get update --module samples.splunk --loglevel=debug
 """
 
 from mvision_edr_activity_feed import subscribe
