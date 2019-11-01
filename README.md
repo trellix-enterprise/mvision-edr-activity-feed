@@ -129,9 +129,7 @@ You can also mix several modules in a single call:
 
     mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --username YOUR_USERNAME --password YOUR_PASSWORD --module samples.generic --module samples.individual --loglevel=debug
     
-.. code:: shell
 
-    mvision-edr-activity-feed --url https://api.soc.mcafee.com/ --username 0812toe6@mvisionedr.technology --password MFEpoctnyGpGgsPf!6 --module samples.syslog_forwarder --loglevel=debug
 
 ## PARSING RULE ON McAfee SIEM
 
