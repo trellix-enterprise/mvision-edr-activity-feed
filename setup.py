@@ -39,6 +39,7 @@ reqs = [
     'requests==2.22.0',
     'jmespath==0.9.4',
     'furl==2.0.0',
+    'func-timeout==4.3.5',
     'future'
 ]
 
