@@ -26,7 +26,7 @@ import json
 import os
 from dxlstreamingclient.channel import Channel, ChannelAuth
 from mvision_edr_activity_feed import invoke, __version__ as version
-
+from func_timeout import func_timeout, FunctionTimedOut
 
 
 def setup_argument_parser():
@@ -88,6 +88,25 @@ def get_config(args):
         configs.__dict__[k] = v
     return configs
 
+def pollConsumerSvc(args, configs, period):
+    with Channel(args.url,
+            auth=ChannelAuth(args.url,
+                args.username,
+                args.password,
+                verify_cert_bundle=args.cert_bundle),
+            consumer_group=args.consumer_group,
+            verify_cert_bundle=args.cert_bundle) as channel:
+        
+        def process_callback(payloads):
+            logging.debug("Received payloads: \n%s",
+                    json.dumps(payloads, indent=4, sort_keys=True))
+            invoke(payloads, configs)
+            return True
+        
+        # Consume records indefinitely
+        channel.run(process_callback, wait_between_queries=period, topics=args.topic)
+
+
 def main():
 
     parser = setup_argument_parser()
@@ -98,13 +117,13 @@ def main():
 
     logging.basicConfig(level=getattr(logging, loglevel.upper(), None),
                         stream=args.logfile)
-    
+
     logger = logging.getLogger()
     ch = logging.StreamHandler()
-    formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s")
+    formatter = logging.Formatter("%(asctime)s %(message)s")
     ch.setFormatter(formatter)
     logger.addHandler(ch)
-    
+
     sys.path.append(os.getcwd())
     # load modules containing subscriptions
     for module in args.module:
@@ -118,29 +137,18 @@ def main():
 
     configs = get_config(args)
 
-    logging.info("Starting event loop...")
+    logging.info("***Starting event loop...")
 
-    try:
-        with Channel(args.url,
-                     auth=ChannelAuth(args.url,
-                                      args.username,
-                                      args.password,
-                                      verify_cert_bundle=args.cert_bundle),
-                     consumer_group=args.consumer_group,
-                     verify_cert_bundle=args.cert_bundle) as channel:
-
-            def process_callback(payloads):
-                logging.debug("Received payloads: \n%s",
-                              json.dumps(payloads, indent=4, sort_keys=True))
-                invoke(payloads, configs)
-                return True
-
-            # Consume records indefinitely
-            channel.run(process_callback, wait_between_queries=period, topics=args.topic)
-
-
-    except Exception as e:
-        logging.error("Unexpected error: {}".format(e))
+    while True:
+        try:
+            """ https://jira-lvs.prod.mcafee.com/browse/SEC-18277 force restart of consumer service every 10 minutes [hardcoded workaround until final solution] """
+            func_timeout(600, pollConsumerSvc, args=[args, configs, period])
+        except FunctionTimedOut:
+            logging.info("Function TO, restart DXL stream channel")
+        except Exception as e:
+            logging.error("Unexpected error: {}".format(e))
+        logging.info("END event lap")
+    logging.info("***END event loop")
 
 if __name__ == "__main__":
     sys.exit(main())
