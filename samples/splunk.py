@@ -37,15 +37,23 @@ def setup():
         logger.addHandler(handler)
         logging.info("***SysLogHandler setup successfull!")
     except Exception as e:
-        logging.error("***Error while setting up SysLogHandler or FileHandler for ESM")
+        logging.error("***Error while setting up SysLogHandler or FileHandler for Splunk")
 
 
-@subscribe(entity='threat')
+# uncomment as needed:            
+# @subscribe(entity='threat')
 def send_threat(event):
+    # uncomment as needed:
+    """
     setup()
     logging.info(json.dumps(event))
+    """
     
-@subscribe(entity='case')
+# uncomment as needed:    
+# @subscribe(entity='case')
 def any_case_event(event):
+    # uncomment as needed:
+    """
     setup()
     logging.info(json.dumps(event))
+    """
