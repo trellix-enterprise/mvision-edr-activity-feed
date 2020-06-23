@@ -127,7 +127,9 @@ def main():
                                       args.password,
                                       verify_cert_bundle=args.cert_bundle),
                      consumer_group=args.consumer_group,
-                     verify_cert_bundle=args.cert_bundle) as channel:
+                     verify_cert_bundle=args.cert_bundle,
+                     offset='latest' if not args.consumer_reset else
+                      'earliest') as channel:
 
             def process_callback(payloads):
                 logging.debug("Received payloads: \n%s",
