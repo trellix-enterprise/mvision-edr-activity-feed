@@ -31,8 +31,8 @@ Generate an ePO Threat Event with info provided by MVISION EDR activity feed
 Usage:
 /python -m mvision_edr_activity_feed --consumer-group <test_consumer_group> 
                                      --url <mvision_edr_url> 
-                                     --username <mvision_edr_username> 
-                                     --password <mvision_edr_password> 
+                                     --client_id <mvision_edr_client_id>
+                                     --client_secret <mvision_edr_client_secret> 
                                      --module samples.epo.mcafeeepo 
                                      --loglevel=debug 
                                      --config host=<epo_host> 

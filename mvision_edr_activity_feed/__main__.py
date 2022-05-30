@@ -19,12 +19,13 @@ must be express and approved by McAfee in writing.
 """
 
 import sys
+import getpass
 import argparse
 from logging.handlers import SysLogHandler
 import logging
 import json
 import os
-from dxlstreamingclient.channel import Channel, ChannelAuth
+from dxlstreamingclient.channel import Channel, ChannelAuth, ClientCredentialsChannelAuth
 from mvision_edr_activity_feed import invoke, __version__ as version
 
 
@@ -41,10 +42,16 @@ def setup_argument_parser():
                         version=version)
     parser.add_argument('--url', required=True,
                         help="Base URL for MVISION EDR")
-    parser.add_argument('--username', required=True,
-                        help="Username for the service")
-    parser.add_argument('--password', required=True,
-                        help="Password for the service")
+    parser.add_argument('--username', required=False,
+                        help="MVISION EDR Username")
+    parser.add_argument('--password', required=False,
+                        help="MVISION EDR Password")
+    parser.add_argument('--client_id', '-C',
+                        required=False, type=str,
+                        help='MVISION EDR Client ID')
+    parser.add_argument('--client_secret', '-S',
+                        required=False, type=str,
+                        help='MVISION EDR Client Secret')
     parser.add_argument('--module', required=True, action='append',
                         help="Module to register events")
     parser.add_argument('--period', '--wait', default=5, type=int,
@@ -76,6 +83,9 @@ def setup_argument_parser():
                         help='Path to a CA bundle file containing certificates of trusted CAs.')
     parser.add_argument('--config', required=False, action='append',
                         help="Configuration key/value pairs for callbacks")
+    parser.add_argument('--preprod', '-PP',
+                        required=False, action='store_true',
+                        default=False, help='Option to generate the authentication token for the preprod environment.')
     return parser
 
 
@@ -92,6 +102,14 @@ def main():
 
     parser = setup_argument_parser()
     args = parser.parse_args()
+    if not args.username:
+        if not args.client_id:
+            print "Missing the authentication credentials. Use either username/password or client_id/client_secret"
+            sys.exit()
+        if not args.client_secret:
+            args.client_secret = getpass.getpass(prompt='MVISION EDR Client Secret: ')
+    if not args.client_secret and not args.password:
+        args.password = getpass.getpass(prompt='MVISION EDR Password: ')
 
     period = args.period
     loglevel = args.loglevel
@@ -118,27 +136,58 @@ def main():
 
     configs = get_config(args)
 
+    CHANNEL_SCOPE = "soc.hts.c soc.hts.r soc.rts.c soc.rts.r soc.qry.pr soc.skr.pr soc.evt.vi soc.cop.r dxls.evt.r"
+    CHANNEL_GRANT_TYPE = "client_credentials"
+    CHANNEL_AUDIENCE = "mcafee"
+    CHANNEL_IAM_URL = 'https://iam.mcafee-cloud.com/'
+    if args.preprod:
+        CHANNEL_IAM_URL = 'https://preprod.iam.mcafee-cloud.com/'
+
     logging.info("Starting event loop...")
 
     try:
-        with Channel(args.url,
-                     auth=ChannelAuth(args.url,
-                                      args.username,
-                                      args.password,
-                                      verify_cert_bundle=args.cert_bundle),
-                     consumer_group=args.consumer_group,
-                     verify_cert_bundle=args.cert_bundle,
-                     offset='latest' if not args.consumer_reset else
-                      'earliest') as channel:
+        if args.username:
+            with Channel(args.url,
+                         auth=ChannelAuth(args.url,
+                                          args.username,
+                                          args.password,
+                                          verify_cert_bundle=args.cert_bundle),
+                         consumer_group=args.consumer_group,
+                         verify_cert_bundle=args.cert_bundle,
+                         offset='latest' if not args.consumer_reset else
+                          'earliest') as channel:
 
-            def process_callback(payloads):
-                logging.debug("Received payloads: \n%s",
-                              json.dumps(payloads, indent=4, sort_keys=True))
-                invoke(payloads, configs)
-                return True
+                def process_callback(payloads):
+                    logging.debug("Received payloads: \n%s",
+                                  json.dumps(payloads, indent=4, sort_keys=True))
+                    invoke(payloads, configs)
+                    return True
 
-            # Consume records indefinitely
-            channel.run(process_callback, wait_between_queries=period, topics=args.topic)
+                # Consume records indefinitely
+                channel.run(process_callback, wait_between_queries=period, topics=args.topic)
+
+        if args.client_id:
+            with Channel(args.url,
+                         auth=ClientCredentialsChannelAuth(CHANNEL_IAM_URL,
+                                          args.client_id,
+                                          args.client_secret,
+                                          verify_cert_bundle=args.cert_bundle,
+                                          scope=CHANNEL_SCOPE,
+                                          grand_type=CHANNEL_GRANT_TYPE,
+                                          audience=CHANNEL_AUDIENCE),
+                         consumer_group=args.consumer_group,
+                         verify_cert_bundle=args.cert_bundle,
+                         offset='latest' if not args.consumer_reset else
+                          'earliest') as channel:
+
+                def process_callback(payloads):
+                    logging.debug("Received payloads: \n%s",
+                                  json.dumps(payloads, indent=4, sort_keys=True))
+                    invoke(payloads, configs)
+                    return True
+
+                # Consume records indefinitely
+                channel.run(process_callback, wait_between_queries=period, topics=args.topic)
 
 
     except Exception as e:

@@ -24,7 +24,7 @@ import jmespath
 import sys
 import json
 
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 
 
 subscriptions = []

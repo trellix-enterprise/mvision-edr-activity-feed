@@ -21,13 +21,17 @@ The CLI has several parameters (as described with
 
 ::
 
-    usage: mvision-edr-activity-feed  [-h] [--version] --url URL --username
-                                      USERNAME --password PASSWORD --module MODULE
-                                      [--wait WAIT]
-                                      [--loglevel {critical,error,warning,info,debug,notset}]
-                                      [--logfile LOGFILE] [--reset]
-                                      [--consumer-group CONSUMER_GROUP]
-                                      [--config CONFIG]
+    usage: mvision-edr-activity-feed [-h] [--version] --url URL
+                                     [--username USERNAME] [--password PASSWORD]
+                                     [--client_id CLIENT_ID]
+                                     [--client_secret CLIENT_SECRET] --module
+                                     MODULE [--period PERIOD] [--topic TOPIC]
+                                     [--loglevel {critical,error,warning,info,debug,notset}]
+                                     [--logfile LOGFILE] [--consumer-reset]
+                                     [--consumer-group CONSUMER_GROUP]
+                                     [--consumer-timeout CONSUMER_TIMEOUT]
+                                     [--cert-bundle CERT_BUNDLE] [--config CONFIG]
+                                     [--preprod]
 
     MVISION EDR Event Dispatcher CLI
 
@@ -35,23 +39,62 @@ The CLI has several parameters (as described with
       -h, --help            show this help message and exit
       --version             show program's version number and exit
       --url URL             Base URL for MVISION EDR (default: None)
-      --username USERNAME   Username for the service (default: None)
-      --password PASSWORD   Password for the service (default: None)
+      --username USERNAME   MVISION EDR Username (default: None)
+      --password PASSWORD   MVISION EDR Password (default: None)
+      --client_id CLIENT_ID, -C CLIENT_ID
+                            MVISION EDR Client ID (default: None)
+      --client_secret CLIENT_SECRET, -S CLIENT_SECRET
+                            MVISION EDR Client Secret (default: None)
       --module MODULE       Module to register events (default: None)
-      --wait WAIT           Time to wait between queries (default: 5)
-      --loglevel {critical,error,warning,info,debug,notset}
-      --logfile LOGFILE
+      --period PERIOD, --wait PERIOD
+                            Time (in seconds) between queries to the event API
+                            (default: 5)
       --topic TOPIC         Topic to subscribe to (default: ['case-mgmt-events',
                             'BusinessEvents', 'threatEvents'])
-      --reset               Starts the consumer group from the earliest event
+      --loglevel {critical,error,warning,info,debug,notset}
+      --logfile LOGFILE
+      --consumer-reset, --reset
+                            Starts the consumer group from the earliest event
                             available. This only works when initializing the
                             consumer group the first time (default: False)
       --consumer-group CONSUMER_GROUP
                             Name for the consumer group to use (default:
-                            mcafee_investigator_events)
+                            mvisionedr_events)
+      --consumer-timeout CONSUMER_TIMEOUT
+                            Time (in seconds) before the consumer is dropped by
+                            the Kafka backend. If event processing takes longer
+                            than this, then events might be duplicated. (default:
+                            300000)
+      --cert-bundle CERT_BUNDLE
+                            Path to a CA bundle file containing certificates of
+                            trusted CAs. (default: )
       --config CONFIG       Configuration key/value pairs for callbacks (default:
                             None)
+      --preprod, -PP        Option to generate the authentication token for the
+                            preprod environment. (default: False)
 
+      If the CLIENT_ID or CLIENT_SECRET start with a - use a = to pass the value to the script, example: --client_id=-5-zLBzODnco9hQnHqEZKf1mn
+
+## Client Credential Generator
+
+To authenticate against the MVISION EDR API, client credentials need to be generated with the [MVISION EDR Credential Generator](mvision_edr_creds_generator.py) first.
+
+1. Log on to MVISION EPO Console using your credentials
+2. Go to "Appliance and Server Registration" page from the menu
+
+   ![1](https://user-images.githubusercontent.com/25227268/165046594-7af12d3c-a6fd-43fc-b88f-0381b08b1b9c.png)
+3. Click on "Add" button
+4. Choose client type "MVISION Endpoint Detection and Response"
+5. Enter number of clients (1)
+
+   ![2](https://user-images.githubusercontent.com/25227268/165046797-2a913460-9f84-480e-a3a5-a9c358467e32.png)
+6. Click on the "Save" button
+7. Copy the "Token" value from the table under the section "MVISION Endpoint Detection and Response"
+
+   ![3](https://user-images.githubusercontent.com/25227268/165047049-6a40a72e-84fc-42a1-80ae-7bbfff9b56e5.png)
+8. Pass the token value as the input parameter to the [mvision_edr_creds_generator.py](mvision_edr_creds_generator.py) script
+9. The script will generate the client_id, client_secret and print on the output console / writes the output to a file (optional)
+10. Use the client_id, client_secret for authentication against the MVISION EDR API
 
 ## SUBSCRIPTIONS
 
@@ -117,17 +160,17 @@ the console. These are executed as follows:
 
 .. code:: shell
 
-    mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --username YOUR_USERNAME --password YOUR_PASSWORD --module samples.generic --loglevel=debug
+    mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --client_id YOUR_CLIENT_ID --client_secret YOUR_CLIENT_SECRET --module samples.generic --loglevel=debug
 
 .. code:: shell
 
-    mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --username YOUR_USERNAME --password YOUR_PASSWORD --module samples.individual --loglevel=debug
+    mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --client_id YOUR_CLIENT_ID --client_secret YOUR_CLIENT_SECRET --module samples.individual --loglevel=debug
 
 You can also mix several modules in a single call:
 
 .. code:: shell
 
-    mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --username YOUR_USERNAME --password YOUR_PASSWORD --module samples.generic --module samples.individual --loglevel=debug
+    mvision-edr-activity-feed --url https://api-int-cop.soc.mcafee.com/ --client_id YOUR_CLIENT_ID --client_secret YOUR_CLIENT_SECRET --module samples.generic --module samples.individual --loglevel=debug
 
 ## PARSING RULE ON McAfee SIEM
 
@@ -152,15 +195,15 @@ If you are behind a proxy, add the following parameter while building the image:
 
 ### RUNNING DOCKER IMAGE
 
-As mentioned before, the `Docker` container spins it's own `rsyslog` daemon. To access `MVISION EDR` resources on the cloud, `username` and `password` must be provided.
+As mentioned before, the `Docker` container spins it's own `rsyslog` daemon. To access `MVISION EDR` resources on the cloud, `client_id` and `client_secret` must be provided.
 
 *Note*: using a service account is advised.
 
 ```
 docker run mvision-edr-activity-feed \
     --url https://api.soc.mcafee.com \
-    --username user \
-    --password pass \
+    --client_id client_id \
+    --client_secret client_secret \
     --module syslog_forwarder \
     --loglevel debug
 

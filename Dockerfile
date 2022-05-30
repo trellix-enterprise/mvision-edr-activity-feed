@@ -9,7 +9,7 @@ RUN apt-get update && \
 RUN pip install --trusted-host pypi.python.org \
     requests==2.22.0 \
     jmespath==0.9.4 \
-    dxlstreamingclient==0.1.1 \
+    dxlstreamingclient==0.1.2 \
     furl==2.0.0
 
 COPY . /mvision-edr-activity-feed/

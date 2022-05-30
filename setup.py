@@ -35,7 +35,7 @@ def get_version():
     raise Exception("Cloud not read version from package")
 
 reqs = [
-    'dxlstreamingclient==0.1.1',
+    'dxlstreamingclient==0.1.2',
     'requests==2.22.0',
     'jmespath==0.9.4',
     'furl==2.0.0',

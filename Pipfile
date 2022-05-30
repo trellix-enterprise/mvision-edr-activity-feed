@@ -7,7 +7,7 @@ verify_ssl = true
 requests = "==2.22.0"
 furl = "==2.0.0"
 jmespath = "==0.9.4"
-dxlstreamingclient = "==0.1.1"
+dxlstreamingclient = "==0.1.2"
 
 [requires]
 python_version = "3.7"
