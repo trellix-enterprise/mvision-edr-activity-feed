@@ -103,12 +103,12 @@ def main():
     parser = setup_argument_parser()
     args = parser.parse_args()
     if args.username and args.client_id:
-        print("Use only one of the authentication credentials, either username/password or client_id/client_secret")
-        sys.exit()
+        logging.critical("Use only one of the authentication credentials, either username/password or client_id/client_secret")
+        exit(1)
     if not args.username:
         if not args.client_id:
-            print("Missing the authentication credentials. Use either username/password or client_id/client_secret")
-            sys.exit()
+            logging.critical("Missing the authentication credentials. Use either username/password or client_id/client_secret")
+            exit(1)
         if not args.client_secret:
             args.client_secret = getpass.getpass(prompt='MVISION EDR Client Secret: ')
     if not args.client_secret and not args.password:
@@ -139,12 +139,15 @@ def main():
 
     configs = get_config(args)
 
-    CHANNEL_SCOPE = "soc.hts.c soc.hts.r soc.rts.c soc.rts.r soc.qry.pr soc.skr.pr soc.evt.vi soc.cop.r dxls.evt.r"
+    CHANNEL_SCOPE = "soc.hts.c soc.hts.r soc.rts.c soc.rts.r soc.qry.pr soc.skr.pr soc.evt.vi soc.cop.r dxls.evt.w dxls.evt.r"
     CHANNEL_GRANT_TYPE = "client_credentials"
     CHANNEL_AUDIENCE = "mcafee"
     CHANNEL_IAM_URL = 'https://iam.mcafee-cloud.com/'
     if args.preprod:
         CHANNEL_IAM_URL = 'https://preprod.iam.mcafee-cloud.com/'
+
+    logging.info("Consumer Group={a}".format(a=args.consumer_group))
+    logging.info("Topics={a}".format(a=args.topic))
 
     logging.info("Starting event loop...")
 
