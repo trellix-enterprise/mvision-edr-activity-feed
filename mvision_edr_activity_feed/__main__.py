@@ -103,11 +103,11 @@ def main():
     parser = setup_argument_parser()
     args = parser.parse_args()
     if args.username and args.client_id:
-        print "Use only one of the authentication credentials, either username/password or client_id/client_secret"
+        print("Use only one of the authentication credentials, either username/password or client_id/client_secret")
         sys.exit()
     if not args.username:
         if not args.client_id:
-            print "Missing the authentication credentials. Use either username/password or client_id/client_secret"
+            print("Missing the authentication credentials. Use either username/password or client_id/client_secret")
             sys.exit()
         if not args.client_secret:
             args.client_secret = getpass.getpass(prompt='MVISION EDR Client Secret: ')
