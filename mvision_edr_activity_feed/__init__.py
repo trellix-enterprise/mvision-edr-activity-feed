@@ -34,6 +34,9 @@ class CustomFunctions(jmespath.functions.Functions):
     @jmespath.functions.signature({'types': ['string']})
     def _func_lower(self, s):
         return s.lower()
+    @jmespath.functions.signature({'types': []})
+    def _func_lower(self, s):
+        return s
 
 
 options = jmespath.Options(custom_functions=CustomFunctions())
@@ -53,7 +56,7 @@ def subscribe(*args, **kwargs):
 
     if not expression:
         if entity and subtype:
-            expression = "lower(entity) == '{}' && lower(subtype) == '{}'".format(
+            expression = "lower(entity) == '{}' && lower(type) == '{}'".format(
                 entity, subtype)
         elif entity:
             expression = "lower(entity) == '{}'".format(entity)
