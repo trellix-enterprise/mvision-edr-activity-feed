@@ -179,7 +179,7 @@ def main():
                                           args.client_secret,
                                           verify_cert_bundle=args.cert_bundle,
                                           scope=CHANNEL_SCOPE,
-                                          grand_type=CHANNEL_GRANT_TYPE,
+                                          grant_type=CHANNEL_GRANT_TYPE,
                                           audience=CHANNEL_AUDIENCE),
                          consumer_group=args.consumer_group,
                          verify_cert_bundle=args.cert_bundle,
