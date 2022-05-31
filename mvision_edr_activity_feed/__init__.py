@@ -53,10 +53,12 @@ def subscribe(*args, **kwargs):
 
     if not expression:
         if entity and subtype:
-            expression = "lower(entity) == '{}' && lower(type) == '{}'".format(
+            expression = "lower(entity) == '{}' && lower(subtype) == '{}'".format(
                 entity, subtype)
-        else:
+        elif entity:
             expression = "lower(entity) == '{}'".format(entity)
+        else:
+            expression = ""
 
     def decorator(func):
         # This decorator just returns the original function after adding it
