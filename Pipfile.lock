@@ -35,7 +35,7 @@
                 "sha256:92f72937b80a4040fd59e7878525eae36891c8ceb63ab2d038ebb4766d172a12"
             ],
             "index": "pypi",
-            "version": "==0.1.1"
+            "version": "==0.1.2"
         },
         "furl": {
             "hashes": [

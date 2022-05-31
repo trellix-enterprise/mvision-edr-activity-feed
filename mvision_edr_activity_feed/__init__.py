@@ -24,7 +24,7 @@ import jmespath
 import sys
 import json
 
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 
 
 subscriptions = []
@@ -34,6 +34,9 @@ class CustomFunctions(jmespath.functions.Functions):
     @jmespath.functions.signature({'types': ['string']})
     def _func_lower(self, s):
         return s.lower()
+    @jmespath.functions.signature({'types': []})
+    def _func_lower(self, s):
+        return s
 
 
 options = jmespath.Options(custom_functions=CustomFunctions())
@@ -55,8 +58,10 @@ def subscribe(*args, **kwargs):
         if entity and subtype:
             expression = "lower(entity) == '{}' && lower(type) == '{}'".format(
                 entity, subtype)
-        else:
+        elif entity:
             expression = "lower(entity) == '{}'".format(entity)
+        else:
+            expression = ""
 
     def decorator(func):
         # This decorator just returns the original function after adding it

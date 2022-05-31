@@ -25,7 +25,7 @@ import json
 from mock import patch, MagicMock
 from mvision_edr_activity_feed import subscribe, invoke, reset_subscriptions
 from mvision_edr_activity_feed.__main__ import get_config, setup_argument_parser, main as af_main
-from dxlstreamingclient.channel import Channel, ChannelAuth
+from dxlstreamingclient.channel import Channel, ChannelAuth, ClientCredentialsChannelAuth
 
 INTERRUPTED = False
 
