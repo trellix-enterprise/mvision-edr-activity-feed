@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--loglevel', '-L',
                         required=False, type=str, choices=['INFO', 'DEBUG'],
-                        default='INFO', help='Option to write client creds to file.')
+                        default='INFO', help='Option to set log level.')
 
     parser.add_argument('--preprod', '-PP',
                         required=False, action='store_true',
