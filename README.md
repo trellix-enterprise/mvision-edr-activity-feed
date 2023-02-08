@@ -17,14 +17,18 @@ Note: Activity Feed pulls only new Threats and not all Detection for the existin
 ### Step by Step usage guide:
 
     ## **Download**
-    Open https://github.com/mcafee-enterprise/mvision-edr-activity-feed and clic on "Code" then click "Download Zip". Once the archive downloaded you can extract it if you are performing the activity in Windows machine or copy the extraced folder into the 
+    Open https://github.com/mcafee-enterprise/mvision-edr-activity-feed and clic on "Code" then click "Download Zip". Once the archive downloaded you can extract it if you are performing the activity in Windows machine or copy the extraced folder into the Linux box.
+    ## **Prerequisites  **
+    Make sure you have Python 3.9 or later version installed on the machine. Python needs to be updated into Environment variable. 
 
 ## INSTALL
-Run either:
-.. code:: shell
+Open a command prompt (Windows box) or Shell command (in Linux) and navigate to the extraced folder and install activity feed
 
     python setup.py install
-   
+    
+Example:
+![1](https://user-images.githubusercontent.com/118408597/217475442-4971524b-b1ca-4300-a6c7-5fb66e940ca1.JPG)
+
    
 ## COMMAND LINE USAGE
 
