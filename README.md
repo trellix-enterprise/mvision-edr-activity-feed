@@ -5,6 +5,19 @@
 - Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python).
 - ``mvision-edr-activity-feed`` is a command line tool to consume and subscribe to events from MVISION EDR
 
+## What Activity Feed does?
+It pulls BusinessEvents and case-mgmt-events and threatEvents from MVISION EDR. 
+
+case-mgmt-events : If you trigger an Investigation from EDR console the details will be pulled by AF. Type will be case-mgmt-events.
+Threat-events : New Threats came into Monitoring UI
+Businesss Events: EDR Business events such as EDR.UI - dashboard are operational events that aren’t reported in the EDR Monitoring dashboard. But, they’re published to the EDR Activity feed.
+
+Note: Activity Feed pulls only new Threats and not all Detection for the existing Threat as highligted in https://kcm.trellix.com/corporate/index?page=content&id=KB94730 
+
+### Step by Step usage guide:
+
+    ## **Download**
+    Open https://github.com/mcafee-enterprise/mvision-edr-activity-feed and clic on "Code" then click "Download Zip". Once the archive downloaded you can extract it if you are performing the activity in Windows machine or copy the extraced folder into the 
 
 ## INSTALL
 Run either:
