@@ -55,10 +55,21 @@ Say you are getting the Token as "**BDNIzOmY**" from step 7 above, then the comm
 ![Capture](https://user-images.githubusercontent.com/118408597/218384835-4fe3ac4f-faca-4a9f-bc0e-cb1817d786af.JPG)
 
 Step 4:** Command to use the Activity Feed for downloading new Threat Information**
+Go to https://docs.trellix.com/bundle/mvision-endpoint-detection-and-response-install-guide/page/GUID-FC03A249-0BBA-4DFC-AE5A-AF945515836C.html site and understand which URL you need use depending on your Tenant Region.
+US-West data center — https://api.soc.trellix.com/
+US-East data center — https://api.soc.us-east-1.trellix.com/
+Frankfurt data center — https://api.soc.eu-central-1.trellix.com/
+Sydney data center — https://api.soc.ap-southeast-2.trellix.com/
+Canada data center — https://api.soc.ca-central-1.trellix.com/
+Asia Pacific South data center — https://api.soc.ap-south-1.trellix.com/
 
+**command line will be :**
 
+mvision-edr-activity-feed --url https://api.soc.ap-south-1.trellix.com/ --client_id YOUR_CLIENT_ID --client_secret YOUR_CLIENT_SECRET --module samples.generic --loglevel=debug
+Example:
+![Capture1](https://user-images.githubusercontent.com/118408597/218386440-040aa429-e143-4448-ad69-dd555df7c7c1.JPG)
 
-
+![Capture3](https://user-images.githubusercontent.com/118408597/218387345-444f5299-df51-43f6-af08-b1cb33886fe3.JPG)
 
    
 ## COMMAND LINE USAGE
