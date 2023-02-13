@@ -15,7 +15,7 @@ Businesss Events: EDR Business events such as EDR.UI - dashboard are operational
 Note: Activity Feed pulls only new Threats and not all Detection for the existing Threat as highligted in https://kcm.trellix.com/corporate/index?page=content&id=KB94730 
 
 ### Step by Step usage guide:
-## **Prerequisites  **
+## **Prerequisites**
 Make sure you have Python 3.9 or later version installed on the machine. Python needs to be updated into Environment variable. 
 
 Step 1: **Download**
