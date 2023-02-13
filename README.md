@@ -69,6 +69,7 @@ mvision-edr-activity-feed --url https://api.soc.ap-south-1.trellix.com/ --client
 Example:
 ![Capture1](https://user-images.githubusercontent.com/118408597/218386440-040aa429-e143-4448-ad69-dd555df7c7c1.JPG)
 
+Example on how new Threat will look like:
 ![Capture3](https://user-images.githubusercontent.com/118408597/218387345-444f5299-df51-43f6-af08-b1cb33886fe3.JPG)
 
    
