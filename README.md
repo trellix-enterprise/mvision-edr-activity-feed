@@ -5,13 +5,73 @@
 - Open Source ActivityFeed integrated with OpenDXL streaming client (https://github.com/opendxl/opendxl-streaming-client-python).
 - ``mvision-edr-activity-feed`` is a command line tool to consume and subscribe to events from MVISION EDR
 
+## What Activity Feed does?
+It pulls BusinessEvents and case-mgmt-events and threatEvents from MVISION EDR. 
 
-## INSTALL
-Run either:
-.. code:: shell
+case-mgmt-events : If you trigger an Investigation from EDR console the details will be pulled by AF. Type will be case-mgmt-events.
+Threat-events : New Threats came into Monitoring UI
+Businesss Events: EDR Business events such as EDR.UI - dashboard are operational events that aren’t reported in the EDR Monitoring dashboard. But, they’re published to the EDR Activity feed.
+
+Note: Activity Feed pulls only new Threats and not all Detection for the existing Threat as highligted in https://kcm.trellix.com/corporate/index?page=content&id=KB94730 
+
+### Step by Step usage guide:
+## **Prerequisites**
+Make sure you have Python 3.9 or later version installed on the machine. Python needs to be updated into Environment variable. 
+
+Step 1: **Download**
+Open https://github.com/mcafee-enterprise/mvision-edr-activity-feed and click on "Code" then click "Download Zip". Once the archive downloaded you can extract it if you are performing the activity in Windows machine or copy the extraced folder into the Linux box.
+
+Step 2: **INSTALL**
+Open a command prompt (Windows box) or Shell command (in Linux) and navigate to the extraced folder and install activity feed
 
     python setup.py install
-   
+    
+Example:
+![1](https://user-images.githubusercontent.com/118408597/217475442-4971524b-b1ca-4300-a6c7-5fb66e940ca1.JPG)
+
+Step 3:**Creating the "Client ID" and "Client Secret"**
+
+## Client Credential Generator
+
+To authenticate against the MVISION EDR API, client credentials need to be generated with the [MVISION EDR Credential Generator](mvision_edr_creds_generator.py) first.
+
+1. Log on to MVISION EPO Console using your credentials
+2. Go to "Appliance and Server Registration" page from the menu
+
+   ![1](https://user-images.githubusercontent.com/25227268/165046594-7af12d3c-a6fd-43fc-b88f-0381b08b1b9c.png)
+3. Click on "Add" button
+4. Choose client type "MVISION Endpoint Detection and Response"
+5. Enter number of clients (1)
+
+   ![2](https://user-images.githubusercontent.com/25227268/165046797-2a913460-9f84-480e-a3a5-a9c358467e32.png)
+6. Click on the "Save" button
+7. Copy the "Token" value from the table under the section "MVISION Endpoint Detection and Response"
+
+   ![3](https://user-images.githubusercontent.com/25227268/165047049-6a40a72e-84fc-42a1-80ae-7bbfff9b56e5.png)
+8. Pass the token value as the input parameter to the [mvision_edr_creds_generator.py](mvision_edr_creds_generator.py) script
+
+Say you are getting the Token as "**BDNIzOmY**" from step 7 above, then the command you will need to run:
+    **python mvision_edr_creds_generator.py -T BDNIzOmY**
+![Capture](https://user-images.githubusercontent.com/118408597/218384835-4fe3ac4f-faca-4a9f-bc0e-cb1817d786af.JPG)
+
+Step 4:** Command to use the Activity Feed for downloading new Threat Information**
+Go to https://docs.trellix.com/bundle/mvision-endpoint-detection-and-response-install-guide/page/GUID-FC03A249-0BBA-4DFC-AE5A-AF945515836C.html site and understand which URL you need use depending on your Tenant Region.
+US-West data center — https://api.soc.trellix.com/
+US-East data center — https://api.soc.us-east-1.trellix.com/
+Frankfurt data center — https://api.soc.eu-central-1.trellix.com/
+Sydney data center — https://api.soc.ap-southeast-2.trellix.com/
+Canada data center — https://api.soc.ca-central-1.trellix.com/
+Asia Pacific South data center — https://api.soc.ap-south-1.trellix.com/
+
+**command line will be :**
+
+mvision-edr-activity-feed --url https://api.soc.ap-south-1.trellix.com/ --client_id YOUR_CLIENT_ID --client_secret YOUR_CLIENT_SECRET --module samples.generic --loglevel=debug
+Example:
+![Capture1](https://user-images.githubusercontent.com/118408597/218386440-040aa429-e143-4448-ad69-dd555df7c7c1.JPG)
+
+Example on how new Threat will look like:
+![Capture3](https://user-images.githubusercontent.com/118408597/218387345-444f5299-df51-43f6-af08-b1cb33886fe3.JPG)
+
    
 ## COMMAND LINE USAGE
 
@@ -75,26 +135,7 @@ The CLI has several parameters (as described with
 
       If the CLIENT_ID or CLIENT_SECRET start with a - use a = to pass the value to the script, example: --client_id=-5-zLBzODnco9hQnHqEZKf1mn
 
-## Client Credential Generator
 
-To authenticate against the MVISION EDR API, client credentials need to be generated with the [MVISION EDR Credential Generator](mvision_edr_creds_generator.py) first.
-
-1. Log on to MVISION EPO Console using your credentials
-2. Go to "Appliance and Server Registration" page from the menu
-
-   ![1](https://user-images.githubusercontent.com/25227268/165046594-7af12d3c-a6fd-43fc-b88f-0381b08b1b9c.png)
-3. Click on "Add" button
-4. Choose client type "MVISION Endpoint Detection and Response"
-5. Enter number of clients (1)
-
-   ![2](https://user-images.githubusercontent.com/25227268/165046797-2a913460-9f84-480e-a3a5-a9c358467e32.png)
-6. Click on the "Save" button
-7. Copy the "Token" value from the table under the section "MVISION Endpoint Detection and Response"
-
-   ![3](https://user-images.githubusercontent.com/25227268/165047049-6a40a72e-84fc-42a1-80ae-7bbfff9b56e5.png)
-8. Pass the token value as the input parameter to the [mvision_edr_creds_generator.py](mvision_edr_creds_generator.py) script
-9. The script will generate the client_id, client_secret and print on the output console / writes the output to a file (optional)
-10. Use the client_id, client_secret for authentication against the MVISION EDR API
 
 ## SUBSCRIPTIONS
 
