@@ -29,7 +29,7 @@ Open a command prompt (Windows box) or Shell command (in Linux) and navigate to 
 Example:
 ![1](https://user-images.githubusercontent.com/118408597/217475442-4971524b-b1ca-4300-a6c7-5fb66e940ca1.JPG)
 
-Step 3:** Creating the "Client ID" and "Client Secret"**
+Step 3:**Creating the "Client ID" and "Client Secret"**
 
 ## Client Credential Generator
 
