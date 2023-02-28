@@ -258,7 +258,7 @@ If you are behind a proxy, add the following parameter:
 
 ## Setup ESM Datasource
 
-An `ESM` data source holds the location and connection information of your network's sources of data. It acts as a connector to your source of data. To instruct `ESM` to parse `MVISION EDR` threat events an `Advanced Syslog Parser` rule is provided (see [sample rule](./RULE_MVISION_EDR_THREAT.xml)). More information can be found at [McAfee Knowledge Center](https://kc.mcafee.com/corporate/index?page=content&id=PD26993).
+An `ESM` data source holds the location and connection information of your network's sources of data. It acts as a connector to your source of data. To instruct `ESM` to parse `MVISION EDR` threat events an `Advanced Syslog Parser` rule is provided (see [sample rule](./RULE_MVISION_EDR_THREAT.xml)). More information can be found at [Trellix Knowledge Center](https://docs.trellix.com/bundle/enterprise-security-manager-data-sources-configuration-reference-guide/page/GUID-9AB95D6F-1092-425D-BEE3-0DAFBB3C51D3.html).
 
 ### How to setup ESM for parsing MVISION EDR Threat events
 
@@ -270,7 +270,7 @@ An `ESM` data source holds the location and connection information of your netwo
 
 ### Add client data sources
 
-* From the `McAfee ESM` dashboard, click the hamburger menu and select `Configuration`.
+* From the `Trellix ESM` dashboard, click the hamburger menu and select `Configuration`.
 * On the system navigation tree, select the Receiver, then click the `Properties` icon (small cog wheel).
 * Click `Data Sources`, the `Add`.
 * `Data Source Vendor` should be `Generic`, and select `Advanced Syslog Parser` as `Data Source Model`.
