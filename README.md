@@ -236,7 +236,7 @@ If you are behind a proxy, add the following parameter while building the image:
 
 ### RUNNING DOCKER IMAGE
 
-As mentioned before, the `Docker` container spins it's own `rsyslog` daemon. To access `MVISION EDR` resources on the cloud, `client_id` and `client_secret` must be provided. you can see the file [Docker to ESM.docx](https://github.com/patrakshar/mvision-edr-activity-feed/files/10852425/Docker.to.ESM.docx) for step by step guide.
+As mentioned before, the `Docker` container spins it's own `rsyslog` daemon. To access `MVISION EDR` resources on the cloud, `client_id` and `client_secret` must be provided. you can see the file [Docker to ESM.docx](https://github.com/mcafee-enterprise/mvision-edr-activity-feed/raw/master/Docker%20to%20ESM.docx) for step by step guide.
 
 
 *Note*: using a service account is advised.
